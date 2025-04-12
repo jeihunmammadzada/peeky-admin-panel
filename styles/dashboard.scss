@@ -1,0 +1,76 @@
+
+// Nav link inside dashboard page
+.nav-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.alert{
+        span{
+            color: red;
+        }
+    }
+
+    span{
+        border: 1px dashed black;
+        border-radius: 30px;
+        padding: 5px 0;
+        width: 120px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    &.active{
+        &::before{
+            display: none !important;
+        }
+
+        span{
+            background: #32356A;
+            color: white;
+        
+        }
+
+        i{
+            background-color: transparent !important;
+        }
+    }
+}
+
+
+// Total survey count
+
+.survey-icon-for-background{
+    position: absolute;
+    width: 70%;
+    top: 0px;
+    right: -70px;
+    transform: rotate(30deg);
+    opacity: 0.05;
+}
+
+.total-survey-count{
+    position: relative;
+    .display-1{
+        font-weight: 600;
+        font-size: 10em;
+        color: rgb(109, 106, 255);
+        padding-top: 50px;
+    }
+
+    img{
+        position: absolute;
+        top: 0;
+        right: 10px;
+    }
+
+    p{
+        margin-top: 50px;
+        font-weight: bold;
+        font-size: 1.3em;
+
+        span{
+            color: #F7941D
+        }
+    }
+}
