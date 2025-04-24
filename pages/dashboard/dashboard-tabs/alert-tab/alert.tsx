@@ -4,7 +4,7 @@ import { Card, Col } from "react-bootstrap";
 // tables import list
 import RudeDriverComplaints from "./tables/rude-driver-complaints";
 import DangerousDriverComplaints from "./tables/dangerous-driver-complaints";
-import DriverAlcoholComplaints from "./tables/driver-alcohol-complaints";
+import DriverPhoneComplaints from "./tables/driver-phone-complaints";
 
 const AlertTab = () => {
   return (
@@ -16,7 +16,7 @@ const AlertTab = () => {
       </div>
 
       <div className="row row-sm">
-        <Col sm={12} md={4}>
+        <Col sm={12} md={6}>
           <Card className="custom-card" style={{"border": "1px solid red"}}>
             <Card.Body>
               <div>
@@ -29,7 +29,7 @@ const AlertTab = () => {
           </Card>
         </Col>
 
-        <Col sm={12} md={4}>
+        <Col sm={12} md={6}>
           <Card className="custom-card" style={{"border": "1px solid red"}}>
             <Card.Body>
               <div>
@@ -42,15 +42,28 @@ const AlertTab = () => {
           </Card>
         </Col>
 
-        <Col sm={12} md={4}>
+        <Col sm={12} md={6}>
           <Card className="custom-card" style={{"border": "1px solid red"}}>
             <Card.Body>
               <div>
                 <h6 className="main-content-label mb-1">
-                  Sürücü içki vəya tütün qəbul edib
+                  Sürücü telefondan istifadə edib
                 </h6>
               </div>
-              <DriverAlcoholComplaints />
+              <DriverPhoneComplaints />
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col sm={12} md={6}>
+          <Card className="custom-card" style={{"border": "1px solid red"}}>
+            <Card.Body>
+              <div>
+                <h6 className="main-content-label mb-1">
+                  Avtobusda sıxlıq var
+                </h6>
+              </div>
+              <DriverPhoneComplaints />
             </Card.Body>
           </Card>
         </Col>

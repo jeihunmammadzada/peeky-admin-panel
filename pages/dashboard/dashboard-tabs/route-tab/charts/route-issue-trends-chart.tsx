@@ -44,7 +44,7 @@ const RouteIssueTrendsChart = () => {
                   backgroundColor: ["#6E6AFF", "#F7941D"],
                 },
               ],
-              labels: ["Dayanacaqların şəraiti", "Dayanacaqların yeri və sayı"],
+              labels: [ "Xəttdə sıxlıq", "Dayanacaqların şəraiti", "Dayanacaqların yeri və sayı"],
               hoverOffset: 4,
             };
             setChartData(dchart);

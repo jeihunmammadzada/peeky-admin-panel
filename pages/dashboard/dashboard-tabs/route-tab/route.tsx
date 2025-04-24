@@ -5,6 +5,7 @@ import { Card, Col } from "react-bootstrap";
 import RouteGeneralRating from "../main-tab/tables/route-general-raiting";
 import RouteStopCount from "./tables/route-stop-count-table";
 import RouteStopQuality from "./tables/route-stop-quality-table";
+import RouteDensityRaiting from "./tables/route-density-rating-table";
 
 // Chart import list
 import RouteStopsCountSatisfaction from "./charts/route-stops-count-satisfaction";
@@ -17,18 +18,23 @@ const RouteCharts = () => {
     <>
       <div className="row row-sm">
         {/* Xəttlər üzrə ümümi reyting */}
-        <Col sm={12} md={6} lg={4}>
+        <Col sm={12} md={6} lg={6}>
           <RouteGeneralRating />
         </Col>
 
         {/* Xəttlər üzrə dayanacaqların yeri və sayı */}
-        <Col sm={12} md={6} lg={4}>
+        <Col sm={12} md={6} lg={6}>
           <RouteStopCount />
         </Col>
 
         {/* Xəttlər üzrə dayanacaqların şəraiti */}
-        <Col sm={12} md={6} lg={4}>
+        <Col sm={12} md={6} lg={6}>
           <RouteStopQuality />
+        </Col>
+
+        {/* Xəttlər üzrə sıxlıq */}
+        <Col sm={12} md={6} lg={6}>
+          <RouteDensityRaiting />
         </Col>
 
         {/* Xəttlər üzrə dayanacaqların yeri və sayından məmnunluq səviyyəsi */}

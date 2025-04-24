@@ -11,7 +11,6 @@ import MostReportedRoutes from "./charts/most-reported-routes";
 import SurveyInsightChart from "./charts/survey-insights-chart";
 import DailySurveyStats from "./charts/daily-survey-stats";
 import HourlyComplaintTrends from "./charts/hourly-complaint-trends";
-import M10UserStatistics from "./charts/M10-user-statistics";
 import HourlySurveyStats from "./charts/hourly-survey-stats";
 import TotalSurveyCount from "./charts/total-survey-count";
 
@@ -192,33 +191,18 @@ const MainCharts = () => {
           </Card>
         </Col>
 
-        {/* Bakubusdan razılıq səviyyəsi */}
-        <Col sm={12} md={6} lg={4}>
+         {/* Saat aralığı üzrə olan ortalama şikayət sayı */}
+         <Col sm={12} md={6} lg={5}>
           <Card className="custom-card overflow-hidden">
-            <Card.Body>
+            <Card.Body className="card-body">
               <div>
                 <h6 className="main-content-label mb-1">
-                  Sərnişinlər üzrə M10 mobil tətbiqindən istifadə
+                  Saat aralığı üzrə olan ortalama şikayət sayı
                 </h6>
               </div>
-              <div className="chartjs-wrapper-demo custom-align pie-chart">
-                <M10UserStatistics />
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
 
-        {/* Sərnişinlərin yaş aralığı üzrə bölgü */}
-        <Col sm={12} lg={8}>
-          <Card className="custom-card overflow-hidden">
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Sərnişinlərin yaş aralığı üzrə bölgü
-                </h6>
-              </div>
-              <div className="chartjs-wrapper-demo custom-align pie-chart">
-                <PassengerAgeTrends />
+              <div className="chartjs-wrapper-demo">
+                <HourlyComplaintTrends />
               </div>
             </Card.Body>
           </Card>
@@ -240,18 +224,17 @@ const MainCharts = () => {
           </Card>
         </Col>
 
-        {/* Saat aralığı üzrə olan ortalama şikayət sayı */}
-        <Col sm={12} md={6} lg={5}>
+        {/* Sərnişinlərin yaş aralığı üzrə bölgü */}
+        <Col sm={12} lg={12}>
           <Card className="custom-card overflow-hidden">
-            <Card.Body className="card-body">
+            <Card.Body>
               <div>
                 <h6 className="main-content-label mb-1">
-                  Saat aralığı üzrə olan ortalama şikayət sayı
+                  Sərnişinlərin yaş aralığı üzrə bölgü
                 </h6>
               </div>
-
-              <div className="chartjs-wrapper-demo">
-                <HourlyComplaintTrends />
+              <div className="chartjs-wrapper-demo custom-align pie-chart">
+                <PassengerAgeTrends />
               </div>
             </Card.Body>
           </Card>

@@ -402,9 +402,9 @@ export const GetWarningOfEmployeeDriving = async () => {
  * Get warning of employee habit
  * @returns
  */
-export const GetWarningOfEmployeeHabit = async () => {
+export const GetWarningOfEmployeePhoneUsing = async () => {
   try {
-    const data = await APIList.surveyAnswers.getWarningOfEmployeeHabit();
+    const data = await APIList.surveyAnswers.getWarningOfEmployeePhoneUsing();
     return data;
   } catch (error) {
     Promise.reject(error);
@@ -645,18 +645,18 @@ export const GetEmployeeDrivingConditionSatisfaction = async (
 
 
 /**
- * Get Employee Habit Satisfaction
+ * Get Employee Phone using Satisfaction
  * @param {string} beginDate
  * @param {string} endDate
  * @retuns
  */
 
-export const GetEmployeeHabitSatisfaction = async (
+export const GetEmployeePhoneUsingSatisfaction = async (
   beginDate: string,
   endDate: string
 ) => {
   try {
-    const data = await APIList.satisfaction.getEmployeeHabitSatisfaction(
+    const data = await APIList.satisfaction.getEmployeePhoneUsingSatisfaction(
       beginDate,
       endDate
     );
@@ -825,6 +825,29 @@ export const GetRouteStationConditionRating = async (
 };
 
 /**
+ * Get Route Passanger Density Rating
+ * @param {string} beginDate
+ * @param {string} endDate
+ * @retuns
+ */
+
+export const GetRoutePassangerDensityRating = async (
+  beginDate: string,
+  endDate: string
+) => {
+  try {
+    const data = await APIList.rating.getRoutePassangerDensityRating(
+      beginDate,
+      endDate
+    );
+    return data;
+  } catch (error) {
+    Promise.reject(error);
+  }
+};
+
+
+/**
  * Get Route Place And Count Rating
  * @param {string} beginDate
  * @param {string} endDate
@@ -937,18 +960,18 @@ export const GetEmployeeDrivingRating = async (
 
 
 /**
- * Get Employee Habit Rating
+ * Get Employee Phone Using Rating
  * @param {string} beginDate
  * @param {string} endDate
  * @retuns
  */
 
-export const GetEmployeeHabitRating = async (
+export const GetEmployeePhoneUsingRating = async (
   beginDate: string,
   endDate: string
 ) => {
   try {
-    const data = await APIList.rating.getEmployeeHabitRating(
+    const data = await APIList.rating.getEmployeePhoneUsingRating(
       beginDate,
       endDate
     );

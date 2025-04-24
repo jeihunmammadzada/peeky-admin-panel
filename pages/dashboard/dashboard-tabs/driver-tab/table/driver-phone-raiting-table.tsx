@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetEmployeeDrivingRating } from "@/utils/actions";
+import { GetEmployeePhoneUsingRating } from "@/utils/actions";
 import { Card, Table } from "react-bootstrap";
 import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 
-const DriverDrivingRaitingTable = () => {
+const DriverSmokeRaitingTable= () => {
   const [first, setFirst] = useState<RatingResult[]>();
   const [last, setLast] = useState<RatingResult[]>();
   const [loading, setLoading] = useState<boolean>();
@@ -14,7 +14,7 @@ const DriverDrivingRaitingTable = () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetEmployeeDrivingRating(dates.beginDate, dates.endDate)
+    await GetEmployeePhoneUsingRating(dates.beginDate, dates.endDate)
       .then((res) => {
         setLoading(false);
         if (res) {
@@ -41,7 +41,7 @@ const DriverDrivingRaitingTable = () => {
           className="main-content-label mb-1 ms-3 mt-3"
           style={{ textTransform: "initial" }}
         >
-          Sürücülərin avtobusu idarəsi üzrə ümumi reytinq
+         Telefondan istifadə reytinqi
         </h6>
         
         {loading && (
@@ -178,5 +178,5 @@ const DriverDrivingRaitingTable = () => {
 };
 
 
-DriverDrivingRaitingTable.layout = "Contentlayout"
-export default DriverDrivingRaitingTable;
+DriverSmokeRaitingTable.layout = "Contentlayout"
+export default DriverSmokeRaitingTable;

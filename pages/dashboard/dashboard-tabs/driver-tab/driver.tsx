@@ -6,12 +6,12 @@ import DriverWearRaitingTable from "./table/driver-wear-raiting-table";
 import DriverBehaviorRaitingTable from "./table/driver-behavior-raiting-table";
 import DriverDrivingRaitingTable from "./table/driver-driving-raiting-table";
 import DriverStopArrivingRaitingTable from "./table/driver-stop-arrivin-raiting-table";
-import DriverSmokeRaitingTable from "./table/driver-smoke-raiting-table";
+import DriverSmokeRaitingTable from "./table/driver-phone-raiting-table";
 
 // Chart import list
 import DriverBehaviorSatisfaction from "./charts/driver-behavior-satisfaction";
 import DriverDrivingSatisfaction from "./charts/driver-driving-satisfaction";
-import DriverSmokeSatisfaction from "./charts/driver-smoke-satisfaction";
+import DriverPhoneSatisfaction from "./charts/driver-phone-satisfaction";
 import DriverStopSatisfaction from "./charts/driver-stop-arriving-satisfaction";
 import DriverTrendsChart from "./charts/driver-trends-chart";
 import DrierWearSatisfaction from "./charts/driver-wear-satisfaction";
@@ -156,12 +156,12 @@ const DriverCharts = () => {
             <Card.Body>
               <div>
                 <h6 className="main-content-label mb-1">
-                  Sürücülərin siqaret və içki qaydalarına əməl etməsi üzrə
+                  Sürücülərin telefondan istifadə etməsi üzrə
                   qiymətləndirilməsi
                 </h6>
               </div>
               <div className="chartjs-wrapper-demo custom-align pie-chart">
-                <DriverSmokeSatisfaction />
+                <DriverPhoneSatisfaction />
               </div>
             </Card.Body>
           </Card>

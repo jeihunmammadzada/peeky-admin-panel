@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetVehicleCleanRating } from "@/utils/actions";
+import { GetVehicleVentilationRating } from "@/utils/actions";
 import { Card, Table } from "react-bootstrap";
 import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
@@ -14,7 +14,7 @@ const BusVentilationRaiting = () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetVehicleCleanRating(dates.beginDate, dates.endDate)
+    await GetVehicleVentilationRating(dates.beginDate, dates.endDate)
       .then((res) => {
         setLoading(false);
         if (res) {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetRouteRating } from "@/utils/actions";
+import { GetRouteStationConditionRating } from "@/utils/actions";
 import { Card, Table } from "react-bootstrap";
 import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
@@ -14,7 +14,7 @@ const RouteStopQuality = () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetRouteRating(dates.beginDate, dates.endDate)
+    await GetRouteStationConditionRating(dates.beginDate, dates.endDate)
       .then((res) => {
         setLoading(false);
         if (res) {

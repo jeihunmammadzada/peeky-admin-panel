@@ -4,9 +4,10 @@ import { formatDistanceToNow } from "date-fns";
 import { az } from "date-fns/locale";
 import { WarningSurveyResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
-import { GetWarningOfEmployeeHabit } from "@/utils/actions";
+import { GetWarningOfEmployeePhoneUsing } from "@/utils/actions";
+import NotFound from "@/pages/components/notFound";
 
-const DriverAlcoholComplaints = () => {
+const DriverPhoneComplaints = () => {
   const [data, setData] = useState<WarningSurveyResult[] | null>();
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<boolean>();
@@ -14,7 +15,7 @@ const DriverAlcoholComplaints = () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetWarningOfEmployeeHabit()
+    await GetWarningOfEmployeePhoneUsing()
       .then((res) => {
         setLoading(false);
         if (res) {
@@ -44,7 +45,7 @@ const DriverAlcoholComplaints = () => {
         <div className="chartjs-wrapper-demo custom-align pie-chart">Error</div>
       )}
 
-      {data?.length! > 0 && (
+      {data?.length! > 0 ? (
         <div className="table-responsive border border-bottom-0 mt-3">
           <table className="table text-nowrap text-md-nowrap table-hover mg-b-0">
             <thead>
@@ -84,11 +85,11 @@ const DriverAlcoholComplaints = () => {
             </tbody>
           </table>
         </div>
-      )}
+      ): <NotFound/>}
     </>
   );
 };
 
 
-DriverAlcoholComplaints.layout = "Contentlayout"
-export default DriverAlcoholComplaints;
+DriverPhoneComplaints.layout = "Contentlayout"
+export default DriverPhoneComplaints;

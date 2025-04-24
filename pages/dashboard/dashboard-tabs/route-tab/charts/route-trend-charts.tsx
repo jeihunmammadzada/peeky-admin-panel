@@ -113,6 +113,26 @@ const RouteTrendChart = () => {
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
                 },
+                {
+                  label:
+                    QuestionsEnum[
+                      res.data.result[0].ratingsByQuestion[2].orderNumber
+                    ],
+                  data: last6Months.map((m) => {
+                    const found = res.data.result.find((d) => {
+                      const Month = new Date(d.endOfMonth).getMonth() + 1;
+                      return Month === m.month;
+                    });
+                    return found
+                      ? found.ratingsByQuestion[1].rating.toFixed(1)
+                      : 0;
+                  }),
+                  backgroundColor: ["#38CDC0"],
+                  borderColor: ["#38CDC0"],
+                  borderWidth: 0,
+                  barPercentage: 0.6,
+                  pointBackgroundColor: "#ffffff",
+                },
               ],
             };
             setChartData(chartData);

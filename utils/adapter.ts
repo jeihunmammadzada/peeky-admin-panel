@@ -292,9 +292,9 @@ const surveyAnswers = {
     requests.get<WarningSurveyResponseModel>(
       DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-employee-driving`
     ),
-  getWarningOfEmployeeHabit: () =>
+  getWarningOfEmployeePhoneUsing: () =>
     requests.get<WarningSurveyResponseModel>(
-      DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-employee-habit`
+      DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-employee-phone-using`
     ),
 };
 
@@ -357,10 +357,10 @@ const satisfaction = {
         `/get-employee-driving-condition-satisfaction?begin=${beginDate}&end=${endDate}`
     ),
 
-  getEmployeeHabitSatisfaction: (beginDate: string, endDate: string) =>
+  getEmployeePhoneUsingSatisfaction: (beginDate: string, endDate: string) =>
     requests.get<SatisfactionResponseModel>(
       DAHSBOARD_SERVICE_SATISFACTION +
-        `/get-employee-habit-satisfaction?begin=${beginDate}&end=${endDate}`
+        `/get-employee-phone-using-satisfaction?begin=${beginDate}&end=${endDate}`
     ),
 
   getEmployeeWearSatisfaction: (beginDate: string, endDate: string) =>
@@ -402,6 +402,12 @@ const rating = {
         `/get-route-station-condition-rating?begin=${beginDate}&end=${endDate}`
     ),
 
+  getRoutePassangerDensityRating: (beginDate: string, endDate: string) =>
+    requests.get<RatingResponseModel>(
+      DAHSBOARD_SERVICE_RATING +
+        `/get-route-passanger-density-rating?begin=${beginDate}&end=${endDate}`
+    ),
+
   getRoutePlaceAndCountRating: (beginDate: string, endDate: string) =>
     requests.get<RatingResponseModel>(
       DAHSBOARD_SERVICE_RATING +
@@ -432,10 +438,10 @@ const rating = {
         `/get-employee-driving-rating?begin=${beginDate}&end=${endDate}`
     ),
 
-  getEmployeeHabitRating: (beginDate: string, endDate: string) =>
+  getEmployeePhoneUsingRating: (beginDate: string, endDate: string) =>
     requests.get<RatingResponseModel>(
       DAHSBOARD_SERVICE_RATING +
-        `/get-employee-habit-rating?begin=${beginDate}&end=${endDate}`
+        `/get-employee-phone-using-rating?begin=${beginDate}&end=${endDate}`
     ),
 
   getEmployeeWearRating: (beginDate: string, endDate: string) =>

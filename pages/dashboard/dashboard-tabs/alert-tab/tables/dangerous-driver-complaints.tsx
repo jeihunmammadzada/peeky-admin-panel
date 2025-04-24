@@ -5,6 +5,7 @@ import { az } from "date-fns/locale";
 import { WarningSurveyResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 import { GetWarningOfEmployeeDriving } from "@/utils/actions";
+import NotFound from "@/pages/components/notFound";
 
 const DangerousDriverComplaints = () => {
   const [data, setData] = useState<WarningSurveyResult[] | null>();
@@ -44,7 +45,7 @@ const DangerousDriverComplaints = () => {
         <div className="chartjs-wrapper-demo custom-align pie-chart">Error</div>
       )}
 
-      {data?.length! > 0 && (
+      {data?.length! > 0 ? (
         <div className="table-responsive border border-bottom-0 mt-3">
           <table className="table text-nowrap text-md-nowrap table-hover mg-b-0">
             <thead>
@@ -70,7 +71,7 @@ const DangerousDriverComplaints = () => {
             </tbody>
           </table>
         </div>
-      )}
+      ): <NotFound/>}
     </>
   );
 };

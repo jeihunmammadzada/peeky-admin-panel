@@ -1,10 +1,10 @@
 import Loading from '@/pages/dashboard/loading';
-import { GetEmployeeHabitSatisfaction } from '@/utils/actions';
+import { GetEmployeePhoneUsingSatisfaction } from '@/utils/actions';
 import React, { useEffect, useState } from 'react'
 import { Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 
-const DriverSmokeSatisfaction = () => {
+const DriverPhoneSatisfaction = () => {
   const [chartData, setChartData] = useState<any>();
   const [error, setError] = useState<boolean>(false);
   const dates = useSelector((state: any) => state)
@@ -33,11 +33,11 @@ const DriverSmokeSatisfaction = () => {
     setChartData(null);
     // Fill data of chart
     const fetchData = async () => {
-      await GetEmployeeHabitSatisfaction(dates.beginDate, dates.endDate)
+      await GetEmployeePhoneUsingSatisfaction(dates.beginDate, dates.endDate)
         .then((res) => {
           if (res) {
             const chartData = {
-              labels: ["Çəkir", "Çəkmir"],
+              labels: ["İstifadə edir", "İstifadə etmir"],
               datasets: [
                 {
                   label: "",
@@ -81,5 +81,5 @@ const DriverSmokeSatisfaction = () => {
   }
 };
 
-DriverSmokeSatisfaction.layout = "Contentlayout"
-export default DriverSmokeSatisfaction
+DriverPhoneSatisfaction.layout = "Contentlayout"
+export default DriverPhoneSatisfaction

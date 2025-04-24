@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetEmployeeRating } from "@/utils/actions";
+import { GetEmployeeBehaviourRating } from "@/utils/actions";
 import { Card, Table } from "react-bootstrap";
 import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
@@ -14,7 +14,7 @@ const DriverBehaviorRaitingTable= () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetEmployeeRating(dates.beginDate, dates.endDate)
+    await GetEmployeeBehaviourRating(dates.beginDate, dates.endDate)
       .then((res) => {
         setLoading(false);
         if (res) {

@@ -152,6 +152,26 @@ const DriverTrendsChart = () => {
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
                 },
+                {
+                  label:
+                    QuestionsEnum[
+                      res.data.result[0].ratingsByQuestion[4].orderNumber
+                    ],
+                  data: last6Months.map((m) => {
+                    const found = res.data.result.find((d) => {
+                      const Month = new Date(d.endOfMonth).getMonth() + 1;
+                      return Month === m.month;
+                    });
+                    return found
+                      ? found.ratingsByQuestion[4].rating.toFixed(1)
+                      : 0;
+                  }),
+                  backgroundColor: ["#37cdc0"],
+                  borderColor: ["#37cdc0"],
+                  borderWidth: 0,
+                  barPercentage: 0.6,
+                  pointBackgroundColor: "#ffffff",
+                },
               ],
             };
             setChartData(chartData);

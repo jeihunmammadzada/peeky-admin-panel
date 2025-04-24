@@ -122,9 +122,10 @@ export const QuestionsEnum: Record<number, string> = {
   4: "Sürücü davranışı",
   5: "İdarəetmə tərzi",
   6: "Vaxtında çatma",
-  7: "Zərərli vərdişlər",
+  7: "Telefondan istifadə",
   8: "Dayanacaq sayı",
   9: "Dayanacaq şəraiti",
+  10: "Avtobusda sıxlıq"
 };
 
 // Months

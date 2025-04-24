@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetEmployeeRating } from "@/utils/actions";
+import { GetRoutePassangerDensityRating } from "@/utils/actions";
 import { Card, Table } from "react-bootstrap";
 import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 
-const DriverSmokeRaitingTable= () => {
+const RouteDensityRaiting = () => {
   const [first, setFirst] = useState<RatingResult[]>();
   const [last, setLast] = useState<RatingResult[]>();
   const [loading, setLoading] = useState<boolean>();
@@ -14,7 +14,7 @@ const DriverSmokeRaitingTable= () => {
 
   const getList = async () => {
     setLoading(true);
-    await GetEmployeeRating(dates.beginDate, dates.endDate)
+    await GetRoutePassangerDensityRating(dates.beginDate, dates.endDate)
       .then((res) => {
         setLoading(false);
         if (res) {
@@ -37,13 +37,12 @@ const DriverSmokeRaitingTable= () => {
   return (
     <>
       <Card className="custom-card overflow-hidden">
-      <h6
+        <h6
           className="main-content-label mb-1 ms-3 mt-3"
           style={{ textTransform: "initial" }}
         >
-         Siqaret və içki qaydalarına əməl reytinqi
+          Xəttlər üzrə sıxlıq
         </h6>
-        
         {loading && (
           <Card.Body>
             <div className="chartjs-wrapper-demo custom-align pie-chart">
@@ -78,7 +77,7 @@ const DriverSmokeRaitingTable= () => {
                         #
                       </th>
                       <th style={{ textTransform: "initial" }} scope="col">
-                        Adı və soyadı
+                        Xəttin adı
                       </th>
                       <th style={{ textTransform: "initial" }} scope="col">
                         Yekun bal
@@ -128,7 +127,7 @@ const DriverSmokeRaitingTable= () => {
                         }}
                         scope="col"
                       >
-                        Adı və soyadı
+                        Xəttin adı
                       </th>
                       <th
                         style={{
@@ -178,5 +177,5 @@ const DriverSmokeRaitingTable= () => {
 };
 
 
-DriverSmokeRaitingTable.layout = "Contentlayout"
-export default DriverSmokeRaitingTable;
+RouteDensityRaiting.layout = "Contentlayout"
+export default RouteDensityRaiting;

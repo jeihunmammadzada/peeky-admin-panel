@@ -1,14 +1,12 @@
 import React from 'react'
+import Image from 'next/image';
+import notFound from '@/public/assets/images/404.svg';
 
 const NotFound = () => {
   return (
     <div>
         <div className="chartjs-wrapper-demo custom-align pie-chart">
-            <img
-            src="/assets/images/404.png"
-            alt="Not Found"
-            style={{ width: "100%", height: "100%" }}
-            />
+          <Image src={notFound} height={200} width={200} alt='Not Found' />
         </div>
     </div>
   )

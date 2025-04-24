@@ -85,14 +85,14 @@ export const MENUITEMS: (MenuItem | NestedMenuItem)[] = [
     menutitle: "Anketlər",
     role: [Roles.SuperAdmin],
     Items: [
-      {
-        path: "/dashboard/forms/questions",
-        icon: "ti ti-map-question",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Suallar",
-      },
+      // {
+      //   path: "/dashboard/forms/questions",
+      //   icon: "ti ti-map-question",
+      //   type: "link",
+      //   active: false,
+      //   selected: false,
+      //   title: "Suallar",
+      // },
       {
         path: "/dashboard/forms/qr",
         icon: "ti ti-qrcode",
