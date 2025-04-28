@@ -5,6 +5,7 @@ import { Card, Col } from "react-bootstrap";
 import RudeDriverComplaints from "./tables/rude-driver-complaints";
 import DangerousDriverComplaints from "./tables/dangerous-driver-complaints";
 import DriverPhoneComplaints from "./tables/driver-phone-complaints";
+import RoutePassengerDensityComplaints from "./tables/route-passenger-density-complatints";
 
 const AlertTab = () => {
   return (
@@ -63,7 +64,7 @@ const AlertTab = () => {
                   Avtobusda sıxlıq var
                 </h6>
               </div>
-              <DriverPhoneComplaints />
+              <RoutePassengerDensityComplaints />
             </Card.Body>
           </Card>
         </Col>

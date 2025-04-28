@@ -3,7 +3,6 @@ import { Months } from "@/const/definitions";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
-import { useSelector } from "react-redux";
 
 const SurveyInsightChart = () => {
   const [chartData, setChartData] = useState<any>();

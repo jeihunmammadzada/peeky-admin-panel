@@ -3,6 +3,7 @@ import { GetRouteComplaintCount } from "@/utils/actions";
 import { Pie } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 import { useSelector } from "react-redux";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const MostReportedRoutes = () => {
   const [chartData, setChartData] = useState<any>();
@@ -14,16 +15,32 @@ const MostReportedRoutes = () => {
     plugins: {
       legend: {
         position: "left",
-        align: "center",
         labels: {
           boxWidth: 10,
           boxHeight: 10,
           borderRadius: 1000,
           useBorderRadius: true,
           usePointStyle: true,
+          padding: 20,
           font: {
             size: 14,
           },
+        },
+      },
+      tooltip: {
+        enabled: false,
+      },
+      datalabels: {
+        formatter: (value: number, context: any) => {
+          const data = context.chart.data.datasets[0].data;
+          const total = data.reduce((acc: number, val: number) => acc + val, 0);
+          const percentage = ((value / total) * 100).toFixed(1);
+          return percentage + "%";
+        },
+        color: '#fff',
+        font: {
+          weight: 'bold' as const,
+          size: 14,
         },
       },
     },
@@ -71,12 +88,32 @@ const MostReportedRoutes = () => {
     return <Loading />;
   } else {
     return (
-      <Pie
-        data={chartData}
-        options={options}
-        className="chartjs-render-monitor w-auto ht-250 m-auto"
-        height="120"
-      />
+      <>
+      <div style={{marginRight: '50px'}} className="w-1/2">
+        {chartData.labels.map((label: string, index: number) => (
+          <div key={index} className="d-flex align-items-center gap-2 justify-content-start mb-1">
+            <div
+              className="rounded-circle"
+              style={{
+                height: '10px',
+                width: '10px',
+                backgroundColor: chartData.datasets[0].backgroundColor[index],
+              }}
+            />
+            <span className="text-sm">{label}</span>
+          </div>
+        ))}
+      </div>
+      <div className="w-1/2">
+        <Pie
+          data={chartData}
+          options={options}
+          plugins={[ChartDataLabels]}
+          className="chartjs-render-monitor w-auto ht-100 m-auto"
+          height="120"
+        />
+      </div>
+    </>
     );
   }
 };

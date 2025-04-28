@@ -1,11 +1,30 @@
 import { GetCompanySatisfaction } from "@/utils/actions";
 import { useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Chart, registerables, CategoryScale } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
-
-Chart.register(...registerables, CategoryScale);
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+} from "chart.js";
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement
+);
 
 const CompanySatisfactionChart = () => {
   const [chartData, setChartData] = useState<any>();
@@ -29,6 +48,22 @@ const CompanySatisfactionChart = () => {
           },
         },
       },
+      tooltip: {
+        enabled: false,
+      },
+      datalabels: {
+        formatter: (value: number, context: any) => {
+          const data = context.chart.data.datasets[0].data;
+          const total = data.reduce((acc: number, val: number) => acc + val, 0);
+          const percentage = ((value / total) * 100).toFixed(1);
+          return percentage + "%";
+        },
+        color: "#fff",
+        font: {
+          weight: "bold" as const,
+          size: 14,
+        },
+      },
     },
   };
 
@@ -43,7 +78,6 @@ const CompanySatisfactionChart = () => {
               labels: ["Razı", "Narazı"],
               datasets: [
                 {
-                  
                   label: "",
                   data: [
                     res.data.result.satisfiedCount,
@@ -79,6 +113,7 @@ const CompanySatisfactionChart = () => {
         <Pie
           data={chartData}
           options={options}
+          plugins={[ChartDataLabels]}
           className="chartjs-render-monitor w-auto ht-250 m-auto"
           height="120"
         />

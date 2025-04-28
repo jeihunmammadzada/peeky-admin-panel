@@ -292,10 +292,17 @@ const surveyAnswers = {
     requests.get<WarningSurveyResponseModel>(
       DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-employee-driving`
     ),
+
   getWarningOfEmployeePhoneUsing: () =>
     requests.get<WarningSurveyResponseModel>(
       DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-employee-phone-using`
     ),
+  
+  getWarningOfRoutePassengerDensity: () =>
+    requests.get<WarningSurveyResponseModel>(
+      DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-route-passanger-density`
+    ),  
+
 };
 
 // Satisfaction
@@ -328,6 +335,12 @@ const satisfaction = {
     requests.get<SatisfactionResponseModel>(
       DAHSBOARD_SERVICE_SATISFACTION +
         `/get-line-station-condition-satisfaction?begin=${beginDate}&end=${endDate}`
+    ),
+
+  getLinePassangerDensitySatisfaction: (beginDate: string, endDate: string) =>
+    requests.get<SatisfactionResponseModel>(
+      DAHSBOARD_SERVICE_SATISFACTION +
+        `/get-line-passanger-density-satisfaction?begin=${beginDate}&end=${endDate}`
     ),
 
   getLinePlaceAndCountSatisfaction: (beginDate: string, endDate: string) =>

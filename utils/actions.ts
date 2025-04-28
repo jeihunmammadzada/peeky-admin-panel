@@ -399,12 +399,25 @@ export const GetWarningOfEmployeeDriving = async () => {
 };
 
 /**
- * Get warning of employee habit
+ * Get warning of employee phone using
  * @returns
  */
 export const GetWarningOfEmployeePhoneUsing = async () => {
   try {
     const data = await APIList.surveyAnswers.getWarningOfEmployeePhoneUsing();
+    return data;
+  } catch (error) {
+    Promise.reject(error);
+  }
+};
+
+/**
+ * Get warning of route passenger density
+ * @returns
+ */
+export const GetWarningOfRoutePassengerDensity = async () => {
+  try {
+    const data = await APIList.surveyAnswers.getWarningOfRoutePassengerDensity();
     return data;
   } catch (error) {
     Promise.reject(error);
@@ -597,6 +610,28 @@ export const GetLineStationConditionSatisfaction = async (
   }
 };
 
+
+/**
+ * Get Line passanger density Satisfaction
+ * @param {string} beginDate
+ * @param {string} endDate
+ * @retuns
+ */
+
+export const GetLinePassangerDensitySatisfaction = async (
+  beginDate: string,
+  endDate: string
+) => {
+  try {
+    const data = await APIList.satisfaction.getLinePassangerDensitySatisfaction(
+      beginDate,
+      endDate
+    );
+    return data;
+  } catch (error) {
+    Promise.reject(error);
+  }
+};
 
 /**
  * Get Employee Behaviour Satisfaction

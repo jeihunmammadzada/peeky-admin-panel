@@ -63,7 +63,7 @@ const PassengerAgeTrends = () => {
                 labels: ["<18", "18-24","25-34", "35-44", "45-54", "55-64",">65"],
                 datasets: [
                   {
-                    data: [data.lessThan18, data.from18To24, data.from25To34, data.from35To44, data.from35To44, data.from45To54, data.from55To64, data.moreThan65],
+                    data: [data.lessThan18, data.from18To24, data.from25To34, data.from35To44, data.from45To54, data.from55To64, data.moreThan65],
                     backgroundColor: ["#6D6AFF"],
                     borderWidth: 0,
                     barPercentage: 0.6,

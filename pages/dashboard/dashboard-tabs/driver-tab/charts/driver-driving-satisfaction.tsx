@@ -3,6 +3,7 @@ import { GetEmployeeDrivingConditionSatisfaction } from '@/utils/actions';
 import React, { useEffect, useState } from 'react'
 import { Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const DriverDrivingSatisfaction = () => {
   const [chartData, setChartData] = useState<any>();
@@ -22,8 +23,24 @@ const DriverDrivingSatisfaction = () => {
           usePointStyle: true,
           padding: 20,
           font: {
-            size: 14
+            size: 14,
           },
+        },
+      },
+      tooltip: {
+        enabled: false,
+      },
+      datalabels: {
+        formatter: (value: number, context: any) => {
+          const data = context.chart.data.datasets[0].data;
+          const total = data.reduce((acc: number, val: number) => acc + val, 0);
+          const percentage = ((value / total) * 100).toFixed(1);
+          return percentage + "%";
+        },
+        color: '#fff',
+        font: {
+          weight: 'bold' as const,
+          size: 14,
         },
       },
     },
@@ -74,6 +91,7 @@ const DriverDrivingSatisfaction = () => {
       <Pie
         data={chartData}
         options={options}
+        plugins={[ChartDataLabels]}
         className="chartjs-render-monitor w-auto ht-250 m-auto"
         height="120"
       />

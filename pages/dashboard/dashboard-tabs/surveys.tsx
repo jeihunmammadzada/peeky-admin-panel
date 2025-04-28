@@ -245,14 +245,8 @@ const Surveys = () => {
                           <div style={{ paddingLeft: "25px" }}>
                             {row.surveySubQuestionAnswer && (
                               <p>
-                                {row.surveySubQuestionAnswer.question} -{" "}
-                                <b>
-                                  {row.type == 1
-                                    ? `- ${row.answer}/5`
-                                    : row.type == 2
-                                    ? row.answer
-                                    : null}
-                                </b>
+                                {row.surveySubQuestionAnswer.question} - <b>{row.surveySubQuestionAnswer.answer}</b> 
+                              
                               </p>
                             )}
 

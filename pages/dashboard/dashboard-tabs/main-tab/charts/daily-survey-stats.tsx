@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetAverageCountDayOfWeek } from "@/utils/actions";
 import { useSelector } from "react-redux";
-import { DaysOfWeek, QuestionsEnum } from "@/const/definitions";
+import { DaysOfWeek } from "@/const/definitions";
 import { Bar } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 
@@ -16,7 +16,7 @@ const DailySurveyStats = () => {
     scales: {
       y: {
         display: false,
-        min: -0.5,
+        min: -0.3,
       },
     },
     plugins: {

@@ -125,7 +125,7 @@ export const QuestionsEnum: Record<number, string> = {
   7: "Telefondan istifadə",
   8: "Dayanacaq sayı",
   9: "Dayanacaq şəraiti",
-  10: "Avtobusda sıxlıq"
+  10: "Xətdə sıxlıq"
 };
 
 // Months

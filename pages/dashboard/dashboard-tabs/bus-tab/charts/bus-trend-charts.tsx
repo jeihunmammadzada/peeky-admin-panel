@@ -32,8 +32,9 @@ const BusTrendChart = () => {
         display: boolean;
         text: string;
       };
+      tooltip?: any; // <-- tooltip hissəsini əlavə et
     };
-  }
+  }  
 
   const options: LineChartOptions = {
     responsive: true,
@@ -46,7 +47,7 @@ const BusTrendChart = () => {
       title: {
         display: false,
         text: "Chart.js Line Chart",
-      },
+      }
     },
   };
 

@@ -16,7 +16,7 @@ const HourlySurveyStats = () => {
     scales: {
       y: {
         display: false,
-        min: -0.5,
+        min: -0.3,
       },
     },
     plugins: {

@@ -1,11 +1,11 @@
-import { GetLineStationConditionSatisfaction } from "@/utils/actions";
+import { GetLinePassangerDensitySatisfaction } from "@/utils/actions";
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
-const RouteStopsQualitySatisfaction = () => {
+const RoutePassangerDensitySatisfaction = () => {
     const [chartData, setChartData] = useState<any>();
     const [error, setError] = useState<boolean>(false);
   
@@ -48,11 +48,11 @@ const RouteStopsQualitySatisfaction = () => {
     useEffect(() => {
       // Fill data of chart
       const fetchData = async () => {
-        await GetLineStationConditionSatisfaction("2025-01-01", "2025-03-30")
+        await GetLinePassangerDensitySatisfaction("2025-01-01", "2025-03-30")
           .then((res) => {
             if (res) {
               const chartData = {
-                labels: ["Razı", "Narazı"],
+                labels: ["Sıxlıq var", "Sıxlıq yoxdur"],
                 datasets: [
                   {
                     label: "",
@@ -67,7 +67,7 @@ const RouteStopsQualitySatisfaction = () => {
               };
               setChartData(chartData);
             } else {
-             setError(true)
+              setError(true)
             }
           })
           .catch((e) => {
@@ -98,6 +98,6 @@ const RouteStopsQualitySatisfaction = () => {
   };
 
 
-RouteStopsQualitySatisfaction.layout = "Contentlayout"
+RoutePassangerDensitySatisfaction.layout = "Contentlayout"
 
-export default RouteStopsQualitySatisfaction
+export default RoutePassangerDensitySatisfaction
