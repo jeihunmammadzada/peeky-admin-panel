@@ -28,7 +28,7 @@ const Surveys = () => {
   const [surveys, setSurveys] = useState<SurveyAnswersResponse>();
   const [totalRows, setTotalRows] = useState<number>();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [countPerPage, setCountPerPage] = useState<number>(5);
+  const [countPerPage, setCountPerPage] = useState<number>(10);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [answerLoading, setAnswerLoading] = useState<boolean>(false);
