@@ -301,8 +301,13 @@ const surveyAnswers = {
   getWarningOfRoutePassengerDensity: () =>
     requests.get<WarningSurveyResponseModel>(
       DAHSBOARD_SERVICE_SURVEY + `/get-warning-of-route-passanger-density`
-    ),  
-
+    ), 
+  
+    
+  getSurveyAnonymAnswer: () => 
+    requests.get<WarningSurveyResponseModel>(
+      DAHSBOARD_SERVICE_SURVEY+`/get-survey-anonym-answer`
+    )
 };
 
 // Satisfaction

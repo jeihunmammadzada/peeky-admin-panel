@@ -6,6 +6,7 @@ import RudeDriverComplaints from "./tables/rude-driver-complaints";
 import DangerousDriverComplaints from "./tables/dangerous-driver-complaints";
 import DriverPhoneComplaints from "./tables/driver-phone-complaints";
 import RoutePassengerDensityComplaints from "./tables/route-passenger-density-complatints";
+import AnonymSurveyAnswers from "./tables/anonimous-complaints";
 
 const AlertTab = () => {
   return (
@@ -65,6 +66,19 @@ const AlertTab = () => {
                 </h6>
               </div>
               <RoutePassengerDensityComplaints />
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col sm={12} md={12}>
+          <Card className="custom-card" style={{"border": "1px solid red"}}>
+            <Card.Body>
+              <div>
+                <h6 className="main-content-label mb-1">
+                  Ödənişsiz şikayətlər
+                </h6>
+              </div>
+              <AnonymSurveyAnswers />
             </Card.Body>
           </Card>
         </Col>

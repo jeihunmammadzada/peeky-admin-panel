@@ -424,6 +424,20 @@ export const GetWarningOfRoutePassengerDensity = async () => {
   }
 };
 
+
+/**
+ * Get survey anonym answers
+ * @returns
+ */
+export const GetSurveyAnonymAnswer = async () => {
+  try {
+    const data = await APIList.surveyAnswers.getSurveyAnonymAnswer();
+    return data;
+  } catch (error) {
+    Promise.reject(error);
+  }
+};
+
 /**
  * Get average count day of week
  * @returns

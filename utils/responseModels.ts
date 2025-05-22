@@ -337,7 +337,8 @@ export type GetSurveyCountByAgeResponseModel = Readonly<{
 export type WarningSurveyResult = {
   rowNumber: number,
   identificationNumber: number,
-  time: string
+  time: string,
+  note?: string
 }
 
 export type WarningSurveyResponseModel = Readonly<{

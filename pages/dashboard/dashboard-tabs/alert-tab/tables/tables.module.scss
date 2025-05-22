@@ -1,0 +1,9 @@
+.withoutBg{
+    background-color: transparent !important;
+    border: none;
+
+    &:hover{
+        background-color: transparent !important;
+        border: none; 
+    }
+}

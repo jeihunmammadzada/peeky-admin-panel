@@ -33,6 +33,10 @@ const RudeDriverComplaints= () => {
     }
   }, []);
 
+  if(data?.length == 0){
+    return <NotFound/>
+  }
+
   return (
     <>
       {loading && (
@@ -45,7 +49,7 @@ const RudeDriverComplaints= () => {
         <div className="chartjs-wrapper-demo custom-align pie-chart">Error</div>
       )}
 
-      {data?.length! > 0 ? (
+      {!loading && (
         <div className="table-responsive border border-bottom-0 mt-3">
           <table className="table text-nowrap text-md-nowrap table-hover mg-b-0">
             <thead style={{"background": "red"}}>
@@ -71,7 +75,7 @@ const RudeDriverComplaints= () => {
             </tbody>
           </table>
         </div>
-      ): <NotFound />}
+      )}
     </>
   );
 };
