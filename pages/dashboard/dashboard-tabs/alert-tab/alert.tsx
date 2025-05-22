@@ -23,7 +23,7 @@ const AlertTab = () => {
             <Card.Body>
               <div>
                 <h6 className="main-content-label mb-1">
-                  Sürücü kobu davranıb
+                  Sürücü kobud davranıb
                 </h6>
               </div>
               <RudeDriverComplaints />
