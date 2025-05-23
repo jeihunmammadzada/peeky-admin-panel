@@ -4,10 +4,12 @@ import { Chart, registerables, CategoryScale } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Loading from "@/pages/dashboard/loading"
+import { useSelector } from "react-redux";
 
 const BusCleanlinessSatisfaction = () => {
     const [chartData, setChartData] = useState<any>();
     const [error, setError] = useState<boolean>(false);
+    const dates = useSelector((state: any) => state);
   
     // Options ilə legend-i aşağı salırıq
     const options: any = {
@@ -48,7 +50,7 @@ const BusCleanlinessSatisfaction = () => {
     useEffect(() => {
       // Fill data of chart
       const fetchData = async () => {
-        await GetVehicleCleanSatisfaction("2025-01-01", "2025-03-30")
+        await GetVehicleCleanSatisfaction(dates.beginDate, dates.endDate)
           .then((res) => {
             if (res) {
               const chartData = {

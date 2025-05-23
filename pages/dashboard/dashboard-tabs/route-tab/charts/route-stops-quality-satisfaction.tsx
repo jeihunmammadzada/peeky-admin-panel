@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useSelector } from "react-redux";
 
 
 const RouteStopsQualitySatisfaction = () => {
     const [chartData, setChartData] = useState<any>();
     const [error, setError] = useState<boolean>(false);
+    const dates = useSelector((state: any) => state);
+    
   
     // Options ilə legend-i aşağı salırıq
     const options: any = {
@@ -48,7 +51,7 @@ const RouteStopsQualitySatisfaction = () => {
     useEffect(() => {
       // Fill data of chart
       const fetchData = async () => {
-        await GetLineStationConditionSatisfaction("2025-01-01", "2025-03-30")
+        await GetLineStationConditionSatisfaction(dates.beginDate, dates.endDate)
           .then((res) => {
             if (res) {
               const chartData = {
