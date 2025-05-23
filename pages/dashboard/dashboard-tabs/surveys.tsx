@@ -207,6 +207,13 @@ const Surveys = () => {
                       {answerData?.surveyAnswersById.passanger.mobileNumber}
                     </p>
                   </Col>
+
+                  <Col xl={4}>
+                    <p>
+                      <b>Avtobusun nömrəsi</b>:{" "}
+                      {answerData?.surveyAnswersById.plateNumber}
+                    </p>
+                  </Col>
                 </Row>
 
                 <hr />

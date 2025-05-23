@@ -258,6 +258,7 @@ type passanger = {
 
 export type SurveyAnswerByIdResponse = Readonly<{
   surveyAnswersById: {
+    plateNumber: string,
     passanger: passanger,
     surveyQuestionAnswers: surveyQuestionAnswers[];
   };
