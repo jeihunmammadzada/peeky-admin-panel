@@ -2,26 +2,29 @@ import React from "react";
 import Image from "next/image";
 import { Card, Col } from "react-bootstrap";
 
-// Charts import list
-import CompanySatisfactionChart from "./charts/company-satisfaction-chart";
-import MostProblemsChart from "./charts/most-problems-chart";
-import MostReportedDrivers from "./charts/most-reported-drivers";
-import MostReportedBuses from "./charts/most-reported-buses";
-import MostReportedRoutes from "./charts/most-reported-routes";
-import SurveyInsightChart from "./charts/survey-insights-chart";
-import DailySurveyStats from "./charts/daily-survey-stats";
-import HourlyComplaintTrends from "./charts/hourly-complaint-trends";
-import HourlySurveyStats from "./charts/hourly-survey-stats";
-import TotalSurveyCount from "./charts/total-survey-count";
+import dynamic from "next/dynamic";
 
-//Tables import list
-import BusGeneralRating from "./tables/bus-general-raiting";
-import RouteGeneralRating from "./tables/route-general-raiting";
-import DriversGeneralRating from "./tables/drivers-generat-raiting";
-import PassengerAgeTrends from "./charts/passenger-age-trends";
+// Lazy-load charts
+const CompanySatisfactionChart = dynamic(() => import("./charts/company-satisfaction-chart"), { ssr: false });
+const MostProblemsChart = dynamic(() => import("./charts/most-problems-chart"), { ssr: false });
+const MostReportedDrivers = dynamic(() => import("./charts/most-reported-drivers"), { ssr: false });
+const MostReportedBuses = dynamic(() => import("./charts/most-reported-buses"), { ssr: false });
+const MostReportedRoutes = dynamic(() => import("./charts/most-reported-routes"), { ssr: false });
+const SurveyInsightChart = dynamic(() => import("./charts/survey-insights-chart"), { ssr: false });
+const DailySurveyStats = dynamic(() => import("./charts/daily-survey-stats"), { ssr: false });
+const HourlyComplaintTrends = dynamic(() => import("./charts/hourly-complaint-trends"), { ssr: false });
+const HourlySurveyStats = dynamic(() => import("./charts/hourly-survey-stats"), { ssr: false });
+const TotalSurveyCount = dynamic(() => import("./charts/total-survey-count"), { ssr: false });
+const PassengerAgeTrends = dynamic(() => import("./charts/passenger-age-trends"), { ssr: false });
 
-// Icons import list
-import surveyIcon from '@/public/assets/images/custom/dashboard-icons/survey-icon.svg';
+// Lazy-load tables
+const BusGeneralRating = dynamic(() => import("./tables/bus-general-raiting"), { ssr: false });
+const RouteGeneralRating = dynamic(() => import("./tables/route-general-raiting"), { ssr: false });
+const DriversGeneralRating = dynamic(() => import("./tables/drivers-generat-raiting"), { ssr: false });
+
+// Icons
+import surveyIcon from "@/public/assets/images/custom/dashboard-icons/survey-icon.svg";
+
 
 const MainCharts = () => {
   return (

@@ -97,7 +97,6 @@ const Buses = () => {
       }).catch(err => {
         toast.error("Avtobus məlumatlarının yüklənməsi zamanı xəta baş verdi");
       })
-      
   };
 
   useEffect(() => {

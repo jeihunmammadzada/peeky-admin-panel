@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import PageHeader from "../../shared/layout-components/page-header/page-header";
 import Seo from "../../shared/layout-components/seo/seo";
-import { Card, Col, Nav, Row, Tab, Table } from "react-bootstrap";
+import { Nav, Row, Tab } from "react-bootstrap";
 import styles from "@/styles/dashboard.module.scss";
+import dynamic from "next/dynamic";
 
 // Dashboard icons
 import EmergencyAlertIcon from "@/public/assets/images/custom/dashboard-icons/email-alert-icon.svg";
@@ -13,12 +14,13 @@ import RouteIcon from "@/public/assets/images/custom/dashboard-icons/route-icon.
 import DriverIcon from "@/public/assets/images/custom/dashboard-icons/driver-icon.svg";
 import SurveyIcon from "@/public/assets/images/custom/dashboard-icons/survey-icon.svg";
 
-import Surveys from "./dashboard-tabs/surveys";
-import MainCharts from "./dashboard-tabs/main-tab/main";
-import BusCharts from "./dashboard-tabs/bus-tab/bus";
-import RouteCharts from "./dashboard-tabs/route-tab/route";
-import DriverCharts from "./dashboard-tabs/driver-tab/driver";
-import AlertTab from "./dashboard-tabs/alert-tab/alert";
+// Lazy-loaded tab components
+const AlertTab = dynamic(() => import("./dashboard-tabs/alert-tab/alert"), { ssr: false });
+const MainCharts = dynamic(() => import("./dashboard-tabs/main-tab/main"), { ssr: false });
+const BusCharts = dynamic(() => import("./dashboard-tabs/bus-tab/bus"), { ssr: false });
+const RouteCharts = dynamic(() => import("./dashboard-tabs/route-tab/route"), { ssr: false });
+const DriverCharts = dynamic(() => import("./dashboard-tabs/driver-tab/driver"), { ssr: false });
+const Surveys = dynamic(() => import("./dashboard-tabs/surveys"), { ssr: false });
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<number>(1);

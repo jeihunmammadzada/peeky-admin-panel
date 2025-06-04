@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
+import dynamic from "next/dynamic";
 
-// tables import list
-import RudeDriverComplaints from "./tables/rude-driver-complaints";
-import DangerousDriverComplaints from "./tables/dangerous-driver-complaints";
-import DriverPhoneComplaints from "./tables/driver-phone-complaints";
-import RoutePassengerDensityComplaints from "./tables/route-passenger-density-complatints";
-import AnonymSurveyAnswers from "./tables/anonimous-complaints";
+// Lazy-loaded complaint tables
+const RudeDriverComplaints = dynamic(() => import("./tables/rude-driver-complaints"), { ssr: false });
+const DangerousDriverComplaints = dynamic(() => import("./tables/dangerous-driver-complaints"), { ssr: false });
+const DriverPhoneComplaints = dynamic(() => import("./tables/driver-phone-complaints"), { ssr: false });
+const RoutePassengerDensityComplaints = dynamic(() => import("./tables/route-passenger-density-complatints"), { ssr: false });
+const AnonymSurveyAnswers = dynamic(() => import("./tables/anonimous-complaints"), { ssr: false });
 
 const AlertTab = () => {
   return (
@@ -18,74 +19,54 @@ const AlertTab = () => {
       </div>
 
       <div className="row row-sm">
-        <Col sm={12} md={6}>
-          <Card className="custom-card" style={{"border": "1px solid red"}}>
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Sürücü kobud davranıb
-                </h6>
-              </div>
-              <RudeDriverComplaints />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col sm={12} md={6}>
-          <Card className="custom-card" style={{"border": "1px solid red"}}>
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Sürücü təhlükəli sürüb
-                </h6>
-              </div>
-              <DangerousDriverComplaints />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col sm={12} md={6}>
-          <Card className="custom-card" style={{"border": "1px solid red"}}>
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Sürücü telefondan istifadə edib
-                </h6>
-              </div>
-              <DriverPhoneComplaints />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col sm={12} md={6}>
-          <Card className="custom-card" style={{"border": "1px solid red"}}>
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Avtobusda sıxlıq var
-                </h6>
-              </div>
-              <RoutePassengerDensityComplaints />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col sm={12} md={12}>
-          <Card className="custom-card" style={{"border": "1px solid red"}}>
-            <Card.Body>
-              <div>
-                <h6 className="main-content-label mb-1">
-                  Ödənişsiz şikayətlər
-                </h6>
-              </div>
-              <AnonymSurveyAnswers />
-            </Card.Body>
-          </Card>
-        </Col>
+        <AlertCard
+          title="Sürücü kobud davranıb"
+          component={<RudeDriverComplaints />}
+        />
+        <AlertCard
+          title="Sürücü təhlükəli sürüb"
+          component={<DangerousDriverComplaints />}
+        />
+        <AlertCard
+          title="Sürücü telefondan istifadə edib"
+          component={<DriverPhoneComplaints />}
+        />
+        <AlertCard
+          title="Avtobusda sıxlıq var"
+          component={<RoutePassengerDensityComplaints />}
+        />
+        <AlertCard
+          title="Ödənişsiz şikayətlər"
+          component={<AnonymSurveyAnswers />}
+          fullWidth
+        />
       </div>
     </>
   );
 };
 
-AlertTab.layout = "Contentlayout"
+const AlertCard = ({
+  title,
+  component,
+  fullWidth = false,
+}: {
+  title: string;
+  component: React.ReactNode;
+  fullWidth?: boolean;
+}) => {
+  return (
+    <Col sm={12} md={fullWidth ? 12 : 6}>
+      <Card className="custom-card border border-danger">
+        <Card.Body>
+          <div>
+            <h6 className="main-content-label mb-1">{title}</h6>
+          </div>
+          {component}
+        </Card.Body>
+      </Card>
+    </Col>
+  );
+};
+
+AlertTab.layout = "Contentlayout";
 export default AlertTab;

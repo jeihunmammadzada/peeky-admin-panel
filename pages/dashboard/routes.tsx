@@ -3,7 +3,7 @@ import PageHeader from "@/shared/layout-components/page-header/page-header";
 import Seo from "@/shared/layout-components/seo/seo";
 import { CreateRoute, getRouteList } from "@/utils/actions";
 import { useEffect, useState } from "react";
-import { Card, Row, Col, Modal, Button, Form, ToastContainer, Toast, Table } from "react-bootstrap";
+import { Card, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Loading from "./loading";
 import dynamic from "next/dynamic";
@@ -61,13 +61,11 @@ const Routes = () => {
   const [list, setList] = useState<any>();
 
   const {
-    control,
     handleSubmit,
     register,
     reset,
     formState: { errors },
   } = useForm<CreateRouteRequest>();
-
 
   const submitHandler: SubmitHandler<addRoute> = async (data) => {
     setIsLoading(true);
@@ -99,7 +97,6 @@ const Routes = () => {
     getList();
   }, []);
 
-
   return (
     <>
       <Seo title="Xəttlər" />
@@ -127,77 +124,70 @@ const Routes = () => {
         <Form onSubmit={handleSubmit(submitHandler)}>
         <Modal.Body>
           <Row className="p-2">
-            <Col >
+            <Col>
               <p className="mb-2 ">Xəttin nömrəsi</p>
               <Form.Control
-                {
-                  ...register("number", {
-                    required: true
-                  })
-                }
+                {...register("number", {
+                  required: true
+                })}
                 type="text"
                 id="input"
                 placeholder="Xəttin nömrəsini daxil edin"
               />
-
-                {errors.number && (
-                  <Form.Control.Feedback className="d-block" type="invalid">
-                    Xananın doldurulması vacibdir
-                  </Form.Control.Feedback>
-                )}
+              {errors.number && (
+                <Form.Control.Feedback className="d-block" type="invalid">
+                  Xananın doldurulması vacibdir
+                </Form.Control.Feedback>
+              )}
             </Col>
             <Col>
               <p className="mb-2">Təyinat yeri - 1 </p>
               <Form.Control
-               {
-                ...register("destinations.0.address", {
+                {...register("destinations.0.address", {
                   required: true
-                })
-              }
+                })}
                 type="text"
                 id="input"
                 placeholder="Təyinat məntəqəsini qeyd edin"
               />
               {errors.destinations?.[0]?.address && (
-                  <Form.Control.Feedback className="d-block" type="invalid">
-                    Xananın doldurulması vacibdir
-                  </Form.Control.Feedback>
-                )}
+                <Form.Control.Feedback className="d-block" type="invalid">
+                  Xananın doldurulması vacibdir
+                </Form.Control.Feedback>
+              )}
             </Col>
-            <Col >
+            <Col>
               <p className="mb-2 ">Təyinat yeri - 2 </p>
               <Form.Control
-               {
-                ...register("destinations.1.address", {
+                {...register("destinations.1.address", {
                   required: true
-                })
-              }
+                })}
                 type="text"
                 id="input"
                 placeholder="Təyinat məntəqəsini qeyd edin"
               />
               {errors.destinations?.[1]?.address && (
-                  <Form.Control.Feedback className="d-block" type="invalid">
-                    Xananın doldurulması vacibdir
-                  </Form.Control.Feedback>
-                )}
+                <Form.Control.Feedback className="d-block" type="invalid">
+                  Xananın doldurulması vacibdir
+                </Form.Control.Feedback>
+              )}
             </Col>
           </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button disabled={isLoading} type="submit" className="btn btn-primary">
-          {isLoading ? (
-                <>
-                  <span
-                    className="spinner-grow me-2 spinner-grow-sm align-middle"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Gözləyin...
-                </>
-              ) : (
-                "Əlavə edin"
-              )}
+            {isLoading ? (
+              <>
+                <span
+                  className="spinner-grow me-2 spinner-grow-sm align-middle"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Gözləyin...
+              </>
+            ) : (
+              "Əlavə edin"
+            )}
           </Button>
         </Modal.Footer>
         </Form>

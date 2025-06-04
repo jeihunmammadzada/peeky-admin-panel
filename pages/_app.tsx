@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 
 import Loading from "./dashboard/loading";
-import { getEmployeeList, getRouteList } from "@/utils/actions";
+import "@/utils/chart-config";
 
 const layouts: any = {
   Contentlayout: Contentlayout,

@@ -1,0 +1,97 @@
+.fullPage {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .row{
+      width: 100%;
+    }
+  }
+  
+  .leftSection {
+    background-color: #6D6AFF;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .leftContent {
+    padding: 50px;
+  }
+  
+  .leftContent h1 {
+    margin-top: 100px;
+    font-weight: 700;
+    font-size: 30px;
+  }
+  
+  .leftContent p {
+    margin-top: 30px;
+    width: 60%;
+    font-size: 20px;
+  }
+  
+  .loginImage {
+    position: absolute;
+    right: -90px;
+    bottom: 20px;
+    width: 40%;
+  }
+  
+  .formWrapper {
+    padding: 30px;
+  }
+  
+  /* RESPONSIVE FOR TABLET */
+  @media only screen and (max-width: 991px) {
+      .loginImage{
+        display: none;
+      }
+
+      .leftContent img{
+        width: 40%;
+      }
+
+      .leftContent h1{
+        font-size: 25px;
+        margin-top: 50px;
+      }
+
+      .leftContent p{
+        font-size: 17px;
+        width: 100%;
+      }
+  }
+
+  @media only screen and (max-width: 767px){
+
+    .leftSection, .fullPage{
+      height: initial;
+    }
+
+    .fullPage{
+      .row{
+        width: initial;
+      }
+    }
+
+    .leftContent{
+      padding: 20px;
+    }
+
+    .leftContent img{
+      width: 150px;
+    } 
+
+    .leftContent h1{
+      margin-top: 20px;
+      font-size: 23px !important;
+    }
+
+    .leftContent p{
+      font-size: 15px;
+    }
+
+    .form h5{
+      display: none;
+    }
+  }

@@ -166,8 +166,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[4].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#37cdc0"],
-                  borderColor: ["#37cdc0"],
+                  backgroundColor: ["green"],
+                  borderColor: ["green"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",

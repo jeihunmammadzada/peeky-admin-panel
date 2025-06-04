@@ -115,7 +115,6 @@ const TimeTable = () => {
 
     if (!file) return;
 
-    // Yalnız Excel fayllarını qəbul edirik
     if (!file.name.endsWith(".xls") && !file.name.endsWith(".xlsx")) {
       setError("assignmentExcelBase64", {
         type: "custom",
@@ -125,10 +124,10 @@ const TimeTable = () => {
     }
 
     const reader = new FileReader();
-    reader.readAsDataURL(file); // Faylı Base64 formatında oxuyur
+    reader.readAsDataURL(file);
     reader.onload = () => {
       if (typeof reader.result === "string") {
-        setBase64(reader.result.split(",")[1]); // Base64 formatını state-ə yazırıq
+        setBase64(reader.result.split(",")[1]);
       }
     };
     reader.onerror = (error) => {
@@ -146,7 +145,6 @@ const TimeTable = () => {
       .then((res) => {
         if(res.status == ResponseStatus.success){
           setDailyList(res.data?.dailyAssignments);
-          setDataLoading(false);
         }else{
           if(res.message != null){
             toast.error(res.message)
@@ -159,9 +157,9 @@ const TimeTable = () => {
       })
       .catch((err) => {
         toast.error(err.message);
-        setDataLoading(false);
         setDailyList([]);
-      });
+      })
+      .finally(() => setDataLoading(false));
   };
 
   const debouncedFetch = debounce((dateForTable) => {
@@ -169,12 +167,12 @@ const TimeTable = () => {
       const regex = /^\d{4}-\d{2}-\d{2}$/;
       return regex.test(dateString) && !isNaN(Date.parse(dateString));
     };
-  
+
     if (dateForTable && isValidDate(dateForTable)) {
       getList();
     }
-  }, 500); // 500ms gözləyir
-  
+  }, 500);
+
   useEffect(() => {
     debouncedFetch(dateForTable);
     return () => debouncedFetch.cancel();
@@ -189,7 +187,6 @@ const TimeTable = () => {
     setIsLoading(true);
     CreateAssignment(updated_DATA)
       .then((res) => {
-        setIsLoading(false);
         setShowModal(false);
         toast.success("Təhkimolma uğurla əlavə olundu");
         getList();
@@ -197,15 +194,14 @@ const TimeTable = () => {
       })
       .catch((err) => {
         if (err.message) {
-          toast.error(err.message, { autoClose: 5000 });
+          toast.error(err.message);
         } else {
           err.errors.map((error: string) => {
-            toast.error(error, { autoClose: 5000 });
+            toast.error(error);
           });
         }
-
-        setIsLoading(false);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (

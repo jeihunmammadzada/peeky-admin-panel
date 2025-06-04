@@ -6,177 +6,106 @@ import { RatingResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 
 const BusGeneralRating = () => {
-  const [first, setFirst] = useState<RatingResult[] | null>();
-  const [last, setLast] = useState<RatingResult[] | null>();
-  const [loading, setLoading] = useState<boolean>();
-  const [error, setError] = useState<boolean>();
+  const [data, setData] = useState<{ first: RatingResult[]; last: RatingResult[] } | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const dates = useSelector((state: any) => state);
 
-  const getList = async () => {
-    setLoading(true);
-    await GetVehicleRating(dates.beginDate, dates.endDate)
-      .then((res) => {
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        setLoading(true);
+        const res = await GetVehicleRating(dates.beginDate, dates.endDate);
         setLoading(false);
-        if (res) {
-          const firstThree = res.data.result.slice(0, 3);
-          const lastThree = res.data.result.slice(-3);
 
-          setFirst(firstThree);
-          setLast(lastThree);
+        if (res?.data?.result?.length! > 0) {
+          const sorted = res?.data.result;
+          const first = sorted!.slice(0, 3);
+          const last = sorted!.slice(-3);
+          setData({ first, last });
         } else {
           setError(true);
         }
-      })
-      .catch((e) => setError(true));
-  };
+      } catch (e) {
+        setLoading(false);
+        setError(true);
+      }
+    };
 
-  useEffect(() => {
     getList();
   }, [dates]);
 
+  const renderRow = (item: RatingResult, color?: string) => (
+    <tr key={item.rowNumber}>
+      <th scope="row" style={{ backgroundColor: color, color: color ? "white" : undefined }}>
+        {item.rowNumber}
+      </th>
+      <td style={{ backgroundColor: color, color: color ? "white" : undefined }}>
+        {item.ratingElement}
+      </td>
+      <td style={{ backgroundColor: color, color: color ? "white" : undefined }}>
+        {item.rating.toFixed(1)}/{" "}
+        <span style={{ fontWeight: "bold", color: color ? "white" : "#7468E9" }}>
+          {item.maximumRating}.00
+        </span>
+      </td>
+    </tr>
+  );
+
   return (
-    <>
-      <Card className="custom-card overflow-hidden">
-      <h6
-          className="main-content-label mb-1 ms-3 mt-3"
-          style={{ textTransform: "initial" }}
-        >
-          Avtobuslar üzrə ümumi reytinq
-        </h6>
-        
-        {loading && (
-          <Card.Body>
-            <div className="chartjs-wrapper-demo custom-align pie-chart">
-              <Loading />
+    <Card className="custom-card overflow-hidden">
+      <h6 className="main-content-label mb-1 ms-3 mt-3" style={{ textTransform: "initial" }}>
+        Avtobuslar üzrə ümumi reytinq
+      </h6>
+
+      {loading && (
+        <Card.Body>
+          <Loading />
+        </Card.Body>
+      )}
+
+      {error && (
+        <Card.Body>
+          <div className="text-danger text-center">Xəta baş verdi</div>
+        </Card.Body>
+      )}
+
+      {data && (
+        <>
+          <Card.Body className="pt-0">
+            <div className="responsive">
+              <Table style={{ marginTop: "20px" }} borderless className="text-nowrap">
+                <thead>
+                  <tr>
+                    <th style={{ width: "10px", textTransform: "initial" }}>#</th>
+                    <th style={{ textTransform: "initial" }}>Eyniləşdirmə nömrəsi</th>
+                    <th style={{ textTransform: "initial" }}>Yekun bal</th>
+                  </tr>
+                </thead>
+                <tbody>{data.first.map((item) => renderRow(item))}</tbody>
+              </Table>
             </div>
           </Card.Body>
-        )}
 
-        {error && (
-          <Card.Body>
-            <div className="chartjs-wrapper-demo custom-align pie-chart">
-              Error
+          <Card.Body style={{ backgroundColor: "#6D6AFF" }}>
+            <div className="responsive">
+              <Table borderless className="text-nowrap">
+                <thead>
+                  <tr>
+                    <th style={{ width: "10px", backgroundColor: "#6D6AFF", color: "white", textTransform: "initial" }}>#</th>
+                    <th style={{ color: "white", backgroundColor: "#6D6AFF", textTransform: "initial" }}>Eyniləşdirmə nömrəsi</th>
+                    <th style={{ color: "white", backgroundColor: "#6D6AFF", textTransform: "initial" }}>Yekun bal</th>
+                  </tr>
+                </thead>
+                <tbody>{data.last.map((item) => renderRow(item, "#6D6AFF"))}</tbody>
+              </Table>
             </div>
           </Card.Body>
-        )}
-
-        {first && (
-          <>
-            <Card.Body className="pt-0">
-              <div className="responsive">
-                <Table
-                  style={{ marginTop: "20px" }}
-                  borderless
-                  className="text-nowrap"
-                >
-                  <thead>
-                    <tr>
-                      <th
-                        style={{ textTransform: "initial", width: "10px" }}
-                        scope="col"
-                      >
-                        #
-                      </th>
-                      <th style={{ textTransform: "initial" }} scope="col">
-                        Eyniləşdirmə nömrəsi
-                      </th>
-                      <th style={{ textTransform: "initial" }} scope="col">
-                        Yekun bal
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {first.map((data) => (
-                      <tr>
-                        <th scope="row">{data.rowNumber}</th>
-                        <td>{data.ratingElement}</td>
-                        <td>
-                          {data.rating.toFixed(1)}/{" "}
-                          <span
-                            style={{ color: "#7468E9", fontWeight: "bold" }}
-                          >
-                            {data.maximumRating}.00
-                          </span>{" "}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            </Card.Body>
-            <Card.Body style={{ backgroundColor: "#6D6AFF" }}>
-              <div className="responsive">
-                <Table borderless className="text-nowrap">
-                  <thead>
-                    <tr>
-                      <th
-                        style={{
-                          textTransform: "initial",
-                          backgroundColor: "#6D6AFF",
-                          color: "white",
-                          width: "10px",
-                        }}
-                        scope="col"
-                      >
-                        #
-                      </th>
-                      <th
-                        style={{
-                          textTransform: "initial",
-                          backgroundColor: "#6D6AFF",
-                          color: "white",
-                        }}
-                        scope="col"
-                      >
-                        Eyniləşdirmə nömrəsi
-                      </th>
-                      <th
-                        style={{
-                          textTransform: "initial",
-                          backgroundColor: "#6D6AFF",
-                          color: "white",
-                        }}
-                        scope="col"
-                      >
-                        Yekun bal
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {last?.map((data) => (
-                      <tr>
-                        <th
-                          style={{ backgroundColor: "#6D6AFF", color: "white" }}
-                          scope="row"
-                        >
-                          {data.rowNumber}
-                        </th>
-                        <td
-                          style={{ backgroundColor: "#6D6AFF", color: "white" }}
-                        >
-                          {data.ratingElement}
-                        </td>
-                        <td
-                          style={{ backgroundColor: "#6D6AFF", color: "white" }}
-                        >
-                          {data.rating.toFixed(1)}/{" "}
-                          <span style={{ color: "white", fontWeight: "bold" }}>
-                            {data.maximumRating}.00
-                          </span>{" "}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            </Card.Body>
-          </>
-        )}
-      </Card>
-    </>
+        </>
+      )}
+    </Card>
   );
 };
 
-
-BusGeneralRating.layout = "Contentlayout"
+BusGeneralRating.layout = "Contentlayout";
 export default BusGeneralRating;

@@ -49,7 +49,7 @@ const Qr = () => {
     id: string;
     plateNumber: string;
   }
-  
+
   const QrDataTable = ({ data }: { data: any }) => {
     const columns: any = [
       {
@@ -76,66 +76,49 @@ const Qr = () => {
       </DataTableExtensions>
     );
   };
-  
 
   const {
     control: control,
     handleSubmit: handleSubmit,
     register: register,
     reset: reset,
+    setValue: setValue,
     formState: { errors },
   } = useForm<CreateQRCodeRequest>();
 
   const getList = async () => {
     setDataLoading(true);
-    GetQRList()
-      .then((res) => {
-        setList(res?.data?.qrCodeVehicles);
-        setDataLoading(false);
-      })
-      .catch(err => {
-        toast.error("QRların yüklənməsi zamanı xəta baş verdi")
-      });
+    try {
+      const res = await GetQRList();
+      setList(res?.data?.qrCodeVehicles);
+      setDataLoading(false);
+
+      const existingPlates = res?.data?.qrCodeVehicles.map((item: any) => item.plateNumber);
+      const allVehiclesRes = await getVehicleList();
+
+      const availableBuses = allVehiclesRes.data?.vehicles
+        .filter((vehicle: any) => !existingPlates?.includes(vehicle.plateNumber))
+        .map((r: any) => ({ value: r.id, label: r.plateNumber }));
+
+      setBusList(availableBuses);
+    } catch (err) {
+      toast.error("Məlumatlar yüklənərkən xəta baş verdi");
+      setDataLoading(false);
+    }
   };
 
   useEffect(() => {
-    const getBusList = async () => {
-      const bus_list: { value: any; label: string }[] = [];
-  
-      setDataLoading(true);
-      getVehicleList()
-        .then((res) => {
-          setDataLoading(false);
-          getList().then(list => {
-            res.data?.vehicles.map((r: any) => {
-              bus_list.push({
-                value: r.id,
-                label: r.plateNumber,
-              });
-            });
-          })
-          
-        })
-        .then(() => {
-          setBusList(bus_list);
-        }).catch(err => {
-          toast.error("Avtobusların yüklənməsi zamanı xəta baş verdi")
-        });
-    };
-
-    getBusList();
     getList();
   }, [])
-  
 
   const createQrHandler: SubmitHandler<CreateQRCodeRequest> = async (data) => {
     setIsLoading(true);
     CreateQrCode(data).then((res) => {
       setIsLoading(false);
-      setShowModal(false);
       toast.success("QR uğurla yaradıldı");
-      getList();
       reset();
+      setValue("vehicleId", "");
+      getList();
     }).catch(err => {
       err.errors.map((error: string) => {
         toast.error(error, {autoClose: 5000})
@@ -167,21 +150,21 @@ const Qr = () => {
             {selectedBus} nömrəli avtobusun QR kodu
           </Modal.Title>
         </Modal.Header>
-          <Modal.Body>
-            <Row>
-              <Col className="d-flex justify-content-center align-items-center" xl={12}>
-                {qrLoading ? 
-                  <Loading /> : 
-                  <Image src={selectedQR} alt="QR" width={300} height={300} />
-                }
-              </Col>
-            </Row>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={handleImageDownload} type="submit" className="btn btn-primary">
-              Yüklə
-            </Button>
-          </Modal.Footer>
+        <Modal.Body>
+          <Row>
+            <Col className="d-flex justify-content-center align-items-center" xl={12}>
+              {qrLoading ?
+                <Loading /> :
+                <Image src={selectedQR} alt="QR" width={300} height={300} />
+              }
+            </Col>
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleImageDownload} type="submit" className="btn btn-primary">
+            Yüklə
+          </Button>
+        </Modal.Footer>
       </Modal>
 
       <Form onSubmit={handleSubmit(createQrHandler)}>
@@ -189,26 +172,26 @@ const Qr = () => {
           <Col className="mb-3" xl={3} lg={3} md={6} sm={12}>
             <p className="mb-2 ">Avtobus seçin</p>
             <Controller
-                  {...register("vehicleId", {
-                    required: true,
-                  })}
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      onChange={(val: any) => field.onChange(val?.value)}
-                      value={busList.find(
-                        (c: { value: string }) => c.value === field.value
-                      )}
-                      ref={field.ref}
-                      isSearchable={true}
-                      options={busList}
-                      className="default basic-multi-select"
-                      id="choices-multiple-default"
-                      classNamePrefix="Select2"
-                    />
-                  )}
+              {...register("vehicleId", {
+                required: true,
+              })}
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  onChange={(val: any) => field.onChange(val?.value)}
+                  value={busList.find(
+                    (c: { value: string }) => c.value === field.value
+                  ) || null}
+                  ref={field.ref}
+                  isSearchable={true}
+                  options={busList}
+                  className="default basic-multi-select"
+                  id="choices-multiple-default"
+                  classNamePrefix="Select2"
                 />
+              )}
+            />
             {errors.vehicleId && (
               <Form.Control.Feedback className="d-block" type="invalid">
                 Seçim edilməsi vacibdir
