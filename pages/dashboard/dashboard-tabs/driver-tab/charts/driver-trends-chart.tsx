@@ -86,8 +86,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[0].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#6E6AFF"],
-                  borderColor: ["#6E6AFF"],
+                  backgroundColor: ["#84DCC6"],
+                  borderColor: ["#84DCC6"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -106,8 +106,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[1].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#F7941D"],
-                  borderColor: ["#F7941D"],
+                  backgroundColor: ["#E4572E"],
+                  borderColor: ["#E4572E"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -126,8 +126,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[2].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#32356A"],
-                  borderColor: ["#32356A"],
+                  backgroundColor: ["#FFC145"],
+                  borderColor: ["#FFC145"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -146,8 +146,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[3].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#37cdc0"],
-                  borderColor: ["#37cdc0"],
+                  backgroundColor: ["#D1BCE3"],
+                  borderColor: ["#D1BCE3"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -166,8 +166,8 @@ const DriverTrendsChart = () => {
                       ? found.ratingsByQuestion[4].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["green"],
-                  borderColor: ["green"],
+                  backgroundColor: ["#5B5F97"],
+                  borderColor: ["#5B5F97"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -188,7 +188,7 @@ const DriverTrendsChart = () => {
   }, []);
 
   if (error) {
-    return "Error";
+    return "Məlumat tapılmadı";
   }
 
   if (!chartData) {

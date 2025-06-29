@@ -61,7 +61,7 @@ const HourlyComplaintTrends = () => {
               datasets: [
                 {
                   data: [data.firstShiftCount, data.secondShiftCount],
-                  backgroundColor: ["#6D6AFF"],
+                  backgroundColor: ["#84DCC6"],
                   borderWidth: 0,
                   barPercentage: 0.4,
                   pointBackgroundColor: "#ffffff",

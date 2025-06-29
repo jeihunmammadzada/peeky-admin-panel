@@ -156,7 +156,11 @@ const TimeTable = () => {
         }
       })
       .catch((err) => {
-        toast.error(err.message);
+        err.errors
+          ? err.errors?.map((error: string) => {
+              toast.error(error, { autoClose: 5000 });
+            })
+            : toast.error(err.message, {autoClose : 5000});
         setDailyList([]);
       })
       .finally(() => setDataLoading(false));

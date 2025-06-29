@@ -76,9 +76,11 @@ const Routes = () => {
       getList();
       reset();
     }).catch((err) => {
-      err.errors.map((error: string) => {
-        toast.error(error, { autoClose: 5000 });
-      });
+      err.errors
+          ? err.errors?.map((error: string) => {
+              toast.error(error, { autoClose: 5000 });
+            })
+            : toast.error(err.message, {autoClose : 5000});
       setIsLoading(false);
     });
   };

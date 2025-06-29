@@ -5,6 +5,7 @@ import { WarningSurveyResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 import { GetWarningOfRoutePassengerDensity } from "@/utils/actions";
 import NotFound from "@/pages/components/notFound";
+import { toast } from "react-toastify";
 
 const RoutePassengerDensityComplaints = () => {
   const [data, setData] = useState<WarningSurveyResult[] | null>(null);
@@ -20,7 +21,12 @@ const RoutePassengerDensityComplaints = () => {
       } else {
         setError(true);
       }
-    } catch (e) {
+    } catch (err: any) {
+      err.errors
+              ? err.errors?.map((error: string) => {
+                  toast.error(error, { autoClose: 5000 });
+                })
+              : toast.error(err.message, { autoClose: 5000 });
       setError(true);
     } finally {
       setLoading(false);

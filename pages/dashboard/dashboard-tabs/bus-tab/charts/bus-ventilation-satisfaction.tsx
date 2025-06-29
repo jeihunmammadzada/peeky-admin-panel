@@ -62,14 +62,14 @@ const BusVentilationSatisfaction = () => {
                       res.data.result.satisfiedCount,
                       res.data.result.dissatisfiedCount,
                     ],
-                    backgroundColor: ["#6E6AFF", "#F7941D"],
+                    backgroundColor: ["#84DCC6", "#E4572E"],
                     hoverOffset: 4,
                   },
                 ],
               };
               setChartData(chartData);
             } else {
-             setError(true)
+              setError(true)
             }
           })
           .catch((e) => {

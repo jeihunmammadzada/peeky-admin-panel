@@ -5,6 +5,7 @@ import { WarningSurveyResult } from "@/utils/responseModels";
 import Loading from "@/pages/dashboard/loading";
 import { GetWarningOfEmployeeDriving } from "@/utils/actions";
 import NotFound from "@/pages/components/notFound";
+import { toast } from "react-toastify";
 
 const DangerousDriverComplaints = () => {
   const [data, setData] = useState<WarningSurveyResult[] | null>(null);
@@ -20,7 +21,12 @@ const DangerousDriverComplaints = () => {
       } else {
         setError(true);
       }
-    } catch (e) {
+    } catch (err: any) {
+      err.errors
+        ? err.errors?.map((error: string) => {
+            toast.error(error, { autoClose: 5000 });
+          })
+        : toast.error(err.message, { autoClose: 5000 });
       setError(true);
     } finally {
       setLoading(false);
@@ -71,7 +77,9 @@ const DangerousDriverComplaints = () => {
         <tbody>
           {data?.map((item) => (
             <tr key={item.rowNumber}>
-              <td style={{ fontWeight: "bold" }}>{item.identificationNumber}</td>
+              <td style={{ fontWeight: "bold" }}>
+                {item.identificationNumber}
+              </td>
               <td>
                 {formatDistanceToNow(new Date(item.time), {
                   addSuffix: true,
@@ -86,5 +94,5 @@ const DangerousDriverComplaints = () => {
   );
 };
 
-DangerousDriverComplaints.layout = "Contentlayout"
+DangerousDriverComplaints.layout = "Contentlayout";
 export default DangerousDriverComplaints;

@@ -59,7 +59,7 @@ const BusIssueTrendsChart = () => {
                   {
                     data: res.data.complaints.map(item => item.complaintCount),
                     backgroundColor: [
-                      "#6E6AFF", "#F7941D"
+                      "#84DCC6", "#E4572E"
                     ],
                   },
                 ],

@@ -87,8 +87,8 @@ const RouteTrendChart = () => {
                       ? found.ratingsByQuestion[0].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#6E6AFF"],
-                  borderColor: ["#6E6AFF"],
+                  backgroundColor: ["#84DCC6"],
+                  borderColor: ["#84DCC6"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -107,8 +107,8 @@ const RouteTrendChart = () => {
                       ? found.ratingsByQuestion[1].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#F7941D"],
-                  borderColor: ["#F7941D"],
+                  backgroundColor: ["#E4572E"],
+                  borderColor: ["#E4572E"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -127,8 +127,8 @@ const RouteTrendChart = () => {
                       ? found.ratingsByQuestion[1].rating.toFixed(1)
                       : 0;
                   }),
-                  backgroundColor: ["#38CDC0"],
-                  borderColor: ["#38CDC0"],
+                  backgroundColor: ["#FFC145"],
+                  borderColor: ["#FFC145"],
                   borderWidth: 0,
                   barPercentage: 0.6,
                   pointBackgroundColor: "#ffffff",
@@ -149,7 +149,7 @@ const RouteTrendChart = () => {
   }, []);
 
   if (error) {
-    return "Error";
+    return "Məlumat tapılmadı";
   }
 
   if (!chartData) {

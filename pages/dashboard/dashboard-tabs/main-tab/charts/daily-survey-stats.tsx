@@ -53,8 +53,8 @@ const DailySurveyStats = () => {
                     const found = res.data.result.find((d) => d.dayOfWeek === day);
                     return found ? found.averageCount : 0
                   }),
-                  backgroundColor: ["#6E6AFF"],
-                  borderColor: ["#6E6AFF"],
+                  backgroundColor: ["#84DCC6"],
+                  borderColor: ["#84DCC6"],
                   borderWidth: 0,
                   borderRadius: 30,
                   borderSkipped: false,

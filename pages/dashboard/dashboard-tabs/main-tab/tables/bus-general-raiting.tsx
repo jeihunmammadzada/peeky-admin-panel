@@ -66,8 +66,10 @@ const BusGeneralRating = () => {
 
       {error && (
         <Card.Body>
-          <div className="text-danger text-center">Xəta baş verdi</div>
-        </Card.Body>
+                 <div className="chartjs-wrapper-demo custom-align pie-chart">
+                 Məlumat tapılmadı
+                 </div>
+               </Card.Body>
       )}
 
       {data && (

@@ -1,6 +1,5 @@
 import { GetVehicleCleanSatisfaction } from "@/utils/actions";
 import React, { useEffect, useState } from "react";
-import { Chart, registerables, CategoryScale } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Loading from "@/pages/dashboard/loading"
@@ -62,7 +61,7 @@ const BusCleanlinessSatisfaction = () => {
                       res.data.result.satisfiedCount,
                       res.data.result.dissatisfiedCount,
                     ],
-                    backgroundColor: ["#6E6AFF", "#F7941D"],
+                    backgroundColor: ["#84DCC6", "#E4572E"],
                     hoverOffset: 4,
                   },
                 ],

@@ -64,8 +64,12 @@ const MostProblemsChart = () => {
               datasets: [
                 {
                   data: res?.data.complaints.map(item => item.complaintCount),
-                  backgroundColor: ["#32356A", "#6D6AFF", "#F6941C"],
-                  borderColor: ["#32356A", "#6D6AFF", "#F6941C"],
+                  backgroundColor: ["#84DCC6", 
+                    "#E4572E",
+                    "#FFC145"],
+                  borderColor: ["#84DCC6", 
+                    "#E4572E",
+                    "#FFC145"],
                   borderWidth: 0,
                   barPercentage: 0.4,
                   pointBackgroundColor: "#ffffff",

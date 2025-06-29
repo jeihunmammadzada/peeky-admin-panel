@@ -1,19 +1,12 @@
 import { Model } from "@/const/definitions";
 import PageHeader from "@/shared/layout-components/page-header/page-header";
-import InputMask from 'react-input-mask';
+import InputMask from "react-input-mask";
 import Seo from "@/shared/layout-components/seo/seo";
 import { CreateVehicle, getVehicleList } from "@/utils/actions";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Modal,
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Card, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DataTable from "react-data-table-component";
 import Loading from "./loading";
@@ -74,18 +67,22 @@ const Buses = () => {
 
   const submitHandler: SubmitHandler<CreateVehicleRequest> = async (data) => {
     setIsLoading(true);
-    CreateVehicle(data).then((res) => {
-      toast.success("Avtobus uğurla əlavə olundu")
-      setIsLoading(false);
-      setShowModal(false);
-      getList();
-      reset();
-    }).catch((err) => {
-      err.errors.map((error: string) => {
-        toast.error(error, { autoClose: 5000 });
+    CreateVehicle(data)
+      .then((res) => {
+        toast.success("Avtobus uğurla əlavə olundu");
+        setIsLoading(false);
+        setShowModal(false);
+        getList();
+        reset();
+      })
+      .catch((err) => {
+        err.errors
+          ? err.errors?.map((error: string) => {
+              toast.error(error, { autoClose: 5000 });
+            })
+            : toast.error(err.message, {autoClose : 5000});
+            setIsLoading(false);
       });
-      setIsLoading(false);
-    });
   };
 
   const getList = async () => {
@@ -94,9 +91,10 @@ const Buses = () => {
       .then((res) => {
         setList(res.data.vehicles);
         setDataLoading(false);
-      }).catch(err => {
-        toast.error("Avtobus məlumatlarının yüklənməsi zamanı xəta baş verdi");
       })
+      .catch((err) => {
+        toast.error("Avtobus məlumatlarının yüklənməsi zamanı xəta baş verdi");
+      });
   };
 
   useEffect(() => {
@@ -151,7 +149,7 @@ const Buses = () => {
                     required: true,
                   })}
                   control={control}
-                  render={({ field }: {field: any}) => (
+                  render={({ field }: { field: any }) => (
                     <Select
                       {...field}
                       onChange={(val: any) => field.onChange(val?.value)}
@@ -182,12 +180,14 @@ const Buses = () => {
                     required: true && "Eyniləşdirmə nömrəsi boş ola bilməz.",
                     min: {
                       value: 10000,
-                      message: "Eyniləşdirmə nömrəsi [10000,99999] aralığında ədəd olmalıdır.",
+                      message:
+                        "Eyniləşdirmə nömrəsi [10000,99999] aralığında ədəd olmalıdır.",
                     },
                     max: {
                       value: 99999,
-                      message: "Eyniləşdirmə nömrəsi [10000,99999] aralığında ədəd olmalıdır."
-                    }
+                      message:
+                        "Eyniləşdirmə nömrəsi [10000,99999] aralığında ədəd olmalıdır.",
+                    },
                   })}
                   type="number"
                   id="input"
@@ -204,13 +204,15 @@ const Buses = () => {
               <Col className="mb-3" xl={6} lg={6} md={6} sm={12}>
                 <p className="mb-2 ">Dövlət qeydiyyat nişanı</p>
                 <Controller
-                  {...register('plateNumber', {
+                  {...register("plateNumber", {
                     required: true,
                   })}
                   control={control}
                   render={({ field }) => (
                     <PlateInputMask
-                      value={field.value} onChange={field.onChange} />
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
                 {errors.plateNumber && (

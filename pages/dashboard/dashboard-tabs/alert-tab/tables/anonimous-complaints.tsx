@@ -10,6 +10,7 @@ import NotFound from "@/pages/components/notFound";
 import AddIcon from "@/public/assets/images/custom/add-icon.svg";
 import { Button, OverlayTrigger, Popover } from "react-bootstrap";
 import styles from "./tables.module.scss";
+import { toast } from "react-toastify";
 
 const AnonymSurveyAnswers = () => {
   const [data, setData] = useState<WarningSurveyResult[] | null>(null);
@@ -26,7 +27,12 @@ const AnonymSurveyAnswers = () => {
       } else {
         setError(true);
       }
-    } catch (e) {
+    } catch (err: any) {
+      err.errors
+        ? err.errors?.map((error: string) => {
+            toast.error(error, { autoClose: 5000 });
+          })
+        : toast.error(err.message, { autoClose: 5000 });
       setError(true);
     } finally {
       setLoading(false);
@@ -70,7 +76,9 @@ const AnonymSurveyAnswers = () => {
         <tbody>
           {data?.map((item) => (
             <tr key={item.rowNumber}>
-              <td style={{ fontWeight: "bold" }}>{item.identificationNumber}</td>
+              <td style={{ fontWeight: "bold" }}>
+                {item.identificationNumber}
+              </td>
               <td>
                 {formatDistanceToNow(new Date(item.time), {
                   addSuffix: true,
@@ -87,7 +95,10 @@ const AnonymSurveyAnswers = () => {
                       placement="top"
                       overlay={
                         <Popover>
-                          <Popover.Header as="h3" style={{ background: "red", color: "white" }}>
+                          <Popover.Header
+                            as="h3"
+                            style={{ background: "red", color: "white" }}
+                          >
                             Şikayətin tam mətni
                           </Popover.Header>
                           <Popover.Body>{item.note}</Popover.Body>
@@ -116,5 +127,5 @@ const headerStyle = (width: string = "auto"): CSSProperties => ({
   width,
 });
 
-AnonymSurveyAnswers.layout = "Contentlayout"
+AnonymSurveyAnswers.layout = "Contentlayout";
 export default AnonymSurveyAnswers;

@@ -59,11 +59,11 @@ const MostReportedDrivers = () => {
                 {
                   data: res.data.complaints.map(item => item.complaintCount),
                   backgroundColor: [
-                    "#6259ca",
-                    "#53caed",
-                    "#01b8ff",
-                    "#000",
-                    "#ff0000",
+                    "#84DCC6", 
+                    "#E4572E",
+                    "#FFC145",
+                    "#D1BCE3",
+                    "#5B5F97",
                   ],
                 },
               ],

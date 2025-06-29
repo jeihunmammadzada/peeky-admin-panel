@@ -47,7 +47,7 @@ const PassengerAgeTrends = () => {
                 data.from55To64,
                 data.moreThan65,
               ],
-              backgroundColor: "#6D6AFF",
+              backgroundColor: "#84DCC6",
               borderWidth: 0,
               barPercentage: 0.6,
             },

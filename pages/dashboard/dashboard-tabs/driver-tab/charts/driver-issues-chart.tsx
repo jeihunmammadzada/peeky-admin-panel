@@ -47,11 +47,11 @@ const DriverIssueChart = () => {
                 {
                   data: res.data.complaints.map((item) => item.complaintCount),
                   backgroundColor: [
-                    "#6E6AFF",
-                    "#F7941D",
-                    "#32356A",
-                    "#37CDC0",
-                    "red",
+                    "#84DCC6", 
+                    "#E4572E",
+                    "#FFC145",
+                    "#D1BCE3",
+                    "#5B5F97",
                   ],
                 },
               ],

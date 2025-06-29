@@ -63,7 +63,7 @@ const SurveyInsightChart = () => {
                 return found ? found.count : 0;
               }),
               borderWidth: 2,
-              borderColor: "#53caed",
+              borderColor: "#84DCC6",
               pointBackgroundColor: "#ffffff",
               pointRadius: 2,
               fill: true,

@@ -46,7 +46,9 @@ const RouteIssueTrendsChart = () => {
               datasets: [
                 {
                   data: res.data.complaints.map((item) => item.complaintCount),
-                  backgroundColor: ["#6E6AFF", "#F7941D","#32356A"],
+                  backgroundColor: [ "#84DCC6", 
+                    "#E4572E",
+                    "#FFC145"],
                 },
               ],
               labels: [ "Xəttdə sıxlıq", "Dayanacaqların şəraiti", "Dayanacaqların yeri və sayı"],
