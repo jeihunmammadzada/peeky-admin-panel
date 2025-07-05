@@ -105,6 +105,19 @@ export const MENUITEMS: (MenuItem | NestedMenuItem)[] = [
   },
 
   {
+    menutitle: "Sərnişinlər",
+    role: [Roles.SuperAdmin],
+    Items: [{
+      path: "/passangers/blocked-numbers",
+        icon: "ti-mobile",
+        type: "link",
+        active: false,
+        selected: false,
+        title: "Blok olunmuş nömrələr",
+    }]
+  },
+
+  {
     menutitle: "İstifadəçilər",
     role: [Roles.SuperAdmin],
     Items: [

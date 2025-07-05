@@ -3,6 +3,7 @@ import Router from "next/router";
 import {
   AssignUserRoleRequest,
   ChangePasswordRequest,
+  CreateBlockedNumberRequest,
   CreateEmployeeRequest,
   CreateQRCodeRequest,
   CreateRoleRequest,
@@ -11,6 +12,7 @@ import {
   EmployeeAssignmentRequest,
   LoginRequest,
   RegisterRequest,
+  RemoveBlockedNumberRequest,
 } from "./requestModels";
 import {
   AllEmployeeResponse,
@@ -44,6 +46,7 @@ import {
   MonthlyRatingResponseModel,
   GetAverageCountByHourResponseModel,
   GetSurveyCountResponseModel,
+  getAllBlockedNumbersResponse,
 } from "./responseModels";
 // create instance
 const instance = axios.create({
@@ -66,6 +69,7 @@ const ADMIN_SERVICE_ROUTE: string = "/admin/api/route";
 const ADMIN_SERVICE_QR: string = "/admin/api/qrcode";
 const ADMIN_SERVICE_VEHICLE: string = "/admin/api/vehicle";
 const ADMIN_SERVICE_EMPLOYEE_ASSIGNMENT: string = "/admin/api/dailyassignment";
+const ADMIN_SERVICE_BLOCKED_NUMBERS: string = "/admin/api/blockMobileNumber";
 const DAHSBOARD_SERVICE_SURVEY: string = "/dashboard/api/surveyanswer";
 const DAHSBOARD_SERVICE_SATISFACTION: string = "/dashboard/api/satisfaction";
 const DAHSBOARD_SERVICE_RATING: string = "/dashboard/api/rating";
@@ -197,6 +201,22 @@ const qr = {
       ADMIN_SERVICE_QR + "/get-qrcode-by-id?id=" + id
     ),
 };
+
+// Blocked numbers
+const blockedNumbers = {
+  getAll: () => 
+    requests.get<getAllBlockedNumbersResponse>(
+      ADMIN_SERVICE_BLOCKED_NUMBERS + "/get-all-blocked-mobile-number"
+    ),
+  
+  create: (data: CreateBlockedNumberRequest) => 
+    requests.post(
+      ADMIN_SERVICE_BLOCKED_NUMBERS + "/create-blocked-mobile-number", data
+    ),
+  
+  remove: (data: RemoveBlockedNumberRequest) => requests.post(ADMIN_SERVICE_BLOCKED_NUMBERS+"/remove-blocked-mobile-number", data)
+  
+}
 
 // Employee
 const employee = {
@@ -540,6 +560,7 @@ const APIList = {
   satisfaction,
   rating,
   complaint,
+  blockedNumbers
 };
 
 export default APIList;

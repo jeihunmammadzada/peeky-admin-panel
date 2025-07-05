@@ -141,3 +141,19 @@ export type CreateVehicleRequest = {
     vehicleId: string
   }
 
+
+  /**
+   * Create blocked number request model
+   * @param {string} mobileNumber - Telefon nömrəsi
+   */
+  export type CreateBlockedNumberRequest = {
+    mobileNumber: string
+  }
+
+   /**
+   * Remove blocked number request model
+   * @param {string} blockedMobileNumberId - Telefon nömrəsinin ID-si
+   */
+   export type RemoveBlockedNumberRequest = {
+    blockedMobileNumberId: string
+  }

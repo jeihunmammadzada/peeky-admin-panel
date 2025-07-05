@@ -186,6 +186,19 @@ export type GetEmployeeAssignmentByDateResponse = Readonly<{
   };
 }>;
 
+
+// Get blocked numbers
+
+export type BlockedNumberItem = {
+  id: string;
+  mobileNumber: string;
+  isActive: boolean;
+};
+
+export type getAllBlockedNumbersResponse = Readonly<{
+  blockedMobileNumbers: BlockedNumberItem[];
+}>;
+
 // Get QR Code list
 type QrCodeVehicle = {
   id: string;

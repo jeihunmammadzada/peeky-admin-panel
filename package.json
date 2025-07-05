@@ -2,6 +2,7 @@
   "name": "peeky",
   "version": "1.0.0",
   "private": true,
+  "sideEffects": false,
   "homepage": "https://peeky.az/",
   "scripts": {
     "dev": "next dev",

@@ -27,6 +27,11 @@ const Home = () => {
 
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   // Login handler
   const loginHandler: SubmitHandler<LoginRequest> = async (data) => {
@@ -55,7 +60,12 @@ const Home = () => {
         style={{ background: "white" }}
         className={`${styles.row} align-items-center justify-content-between`}
       >
-        <Col sm={12} md={6} lg={7} className={`${styles.leftSection} text-white`}>
+        <Col
+          sm={12}
+          md={6}
+          lg={7}
+          className={`${styles.leftSection} text-white`}
+        >
           <div className={styles.leftContent}>
             <img width={200} src={`/assets/images/custom/logo-white.png`} />
 
@@ -111,7 +121,7 @@ const Home = () => {
                                 {...field}
                                 className="form-control"
                                 placeholder="İstifadəçi adını daxil edin"
-                                autoComplete='off'
+                                autoComplete="off"
                                 type="text"
                               />
                             )}
@@ -131,15 +141,31 @@ const Home = () => {
                           controlId="formpassword"
                         >
                           <Form.Label>Parol</Form.Label>
-                          <Form.Control
-                            {...register("password", {
-                              required: true,
-                            })}
-                            className="form-control"
-                            placeholder="Parolu daxil edin"
-                            autoComplete='off'
-                            type="password"
-                          />
+                          <div style={{ position: "relative" }}>
+                            <Form.Control
+                              {...register("password", {
+                                required: true,
+                              })}
+                              className="form-control"
+                              placeholder="Parolu daxil edin"
+                              autoComplete="off"
+                              type={showPassword ? "text" : "password"}
+                            />
+
+                            <span
+                              onClick={togglePasswordVisibility}
+                              style={{
+                                position: "absolute",
+                                top: "50%",
+                                right: "10px",
+                                transform: "translateY(-50%)",
+                                cursor: "pointer",
+                                userSelect: "none",
+                              }}
+                            >
+                              {showPassword ? <i className="ti ti-eye-off"></i> : <i className="ti-eye"></i>}
+                            </span>
+                          </div>
                           {errors.password && (
                             <Form.Control.Feedback
                               className="d-block"

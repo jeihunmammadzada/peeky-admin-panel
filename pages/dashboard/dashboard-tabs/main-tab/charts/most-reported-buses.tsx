@@ -59,8 +59,10 @@ const MostReportedBuses = () => {
                     data: res.data.complaints.map(item => item.complaintCount),
                     backgroundColor: [
                       "#84DCC6", 
-                    "#E4572E",
-                    "#FFC145"
+                      "#E4572E",
+                      "#FFC145",
+                      "#D1BCE3",
+                      "#5B5F97",
                     ],
                   },
                 ],

@@ -15,18 +15,7 @@ const MostReportedDrivers = () => {
     cutout: "60%",
     plugins: {
       legend: {
-        position: "left",
-        labels: {
-          boxWidth: 10,
-          boxHeight: 10,
-          borderRadius: 1000,
-          useBorderRadius: true,
-          usePointStyle: true,
-          padding: 20,
-          font: {
-            size: 14,
-          },
-        },
+        display: false
       },
       tooltip: {
         enabled: false,

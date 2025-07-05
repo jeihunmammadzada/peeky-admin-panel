@@ -13,19 +13,8 @@ const MostReportedRoutes = () => {
   // Options ilə legend-i aşağı salırıq
   const options: any = {
     plugins: {
-      legend: {
-        position: "left",
-        labels: {
-          boxWidth: 10,
-          boxHeight: 10,
-          borderRadius: 1000,
-          useBorderRadius: true,
-          usePointStyle: true,
-          padding: 20,
-          font: {
-            size: 14,
-          },
-        },
+       legend: {
+        display: false
       },
       tooltip: {
         enabled: false,

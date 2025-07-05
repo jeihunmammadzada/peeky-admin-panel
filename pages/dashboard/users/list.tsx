@@ -37,20 +37,10 @@ export const UsersDataTable = ({ data }: { data: any }) => {
       sortable: true,
     },
     {
-      name: "Email ünvanı",
-      selector: (row: UserTableItem) => [row.email],
-      sortable: true,
-    },
-    {
       name: "Rollar",
       selector: (row: UserTableItem) => [row.roles.join(", ")],
       sortable: true,
-    },
-    {
-      name: "İstifadəçinin əlaqə nömrəsi",
-      selector: (row: UserTableItem) => [row.phoneNumber],
-      sortable: true,
-    },
+    }
   ];
   const tableDatas = {
     columns,

@@ -3,6 +3,7 @@ import APIList from "./adapter";
 import {
   AssignUserRoleRequest,
   ChangePasswordRequest,
+  CreateBlockedNumberRequest,
   CreateEmployeeRequest,
   CreateQRCodeRequest,
   CreateRoleRequest,
@@ -10,6 +11,7 @@ import {
   CreateVehicleRequest,
   EmployeeAssignmentRequest,
   LoginRequest,
+  RemoveBlockedNumberRequest,
 } from "./requestModels";
 
 /**
@@ -304,6 +306,50 @@ export const GetQRById = async (id: string) => {
     Promise.reject(error);
   }
 };
+
+
+
+/**
+ * Create blocked number
+ * @param model
+ * @returns
+ */
+
+export const CreateBlockedNumber = async (model: CreateBlockedNumberRequest) => {
+  try {
+    const data = await APIList.blockedNumbers.create(model);
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+/**
+ * Remove blocked number
+ * @param model
+ * @returns
+ */
+
+export const RemoveBlockedNumber = async (model: RemoveBlockedNumberRequest) => {
+  try {
+    const data = await APIList.blockedNumbers.remove(model);
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+// Get Blocked number list
+export const GetBlockedNumberList = async () => {
+  try {
+    const data = await APIList.blockedNumbers.getAll();
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+
 
 /**
  * @param {number} pageNumber - Səhifənin nömrəsi

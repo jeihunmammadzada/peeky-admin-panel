@@ -58,12 +58,10 @@ const BusIssueTrendsChart = () => {
                 datasets: [
                   {
                     data: res.data.complaints.map(item => item.complaintCount),
-                    backgroundColor: [
-                      "#84DCC6", "#E4572E"
-                    ],
+                    backgroundColor: ["#84DCC6", "#E4572E"],
                   },
                 ],
-                labels: ["Havalandırma","Təmizlik"],
+                labels: ["Havalandırma", "Təmizlik"],
                 hoverOffset: 4,
               };
               setChartData(dchart);
