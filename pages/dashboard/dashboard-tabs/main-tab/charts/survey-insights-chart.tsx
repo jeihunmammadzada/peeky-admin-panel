@@ -3,11 +3,20 @@ import { GetMonthlySurveyAnswer } from "@/utils/actions";
 import { Months } from "@/const/definitions";
 import { Line } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
+
 import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
   ChartData,
   ChartOptions,
-  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
 } from "chart.js";
+
+ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const SurveyInsightChart = () => {
   const [chartData, setChartData] = useState<ChartData<"line"> | null>(null);

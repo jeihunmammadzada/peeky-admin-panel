@@ -9,22 +9,10 @@ import {
   ArcElement,
   Tooltip,
   Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement,
 } from "chart.js";
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement
-);
+
+// Lazım olanları qeydiyyat et
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CompanySatisfactionChart = () => {
   const [chartData, setChartData] = useState<any>();

@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 
 import Loading from "./dashboard/loading";
-import "@/utils/chart-config";
+import "@/utils/chartSetup";
 
 const layouts: any = {
   Contentlayout: Contentlayout,

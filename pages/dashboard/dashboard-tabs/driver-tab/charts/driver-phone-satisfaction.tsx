@@ -5,6 +5,16 @@ import { Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Lazım olanları qeydiyyat et
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 const DriverPhoneSatisfaction = () => {
   const [chartData, setChartData] = useState<any>();
   const [error, setError] = useState<boolean>(false);
@@ -62,7 +72,7 @@ const DriverPhoneSatisfaction = () => {
                     res.data.result.satisfiedCount,
                     res.data.result.dissatisfiedCount,
                   ],
-                  backgroundColor: ["#84DCC6", "#E4572E"],
+                  backgroundColor: ["#E4572E", "#84DCC6"],
                   hoverOffset: 4,
                 },
               ],

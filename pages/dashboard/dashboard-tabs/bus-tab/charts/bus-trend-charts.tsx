@@ -3,7 +3,17 @@ import { Months, QuestionsEnum } from "@/const/definitions";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
-import { useSelector } from "react-redux";
+
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const BusTrendChart = () => {
   const [chartData, setChartData] = useState<any>();

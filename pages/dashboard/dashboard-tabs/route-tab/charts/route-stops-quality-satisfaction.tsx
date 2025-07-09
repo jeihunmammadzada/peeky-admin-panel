@@ -5,6 +5,16 @@ import Loading from "@/pages/dashboard/loading";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useSelector } from "react-redux";
 
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Lazım olanları qeydiyyat et
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 const RouteStopsQualitySatisfaction = () => {
     const [chartData, setChartData] = useState<any>();

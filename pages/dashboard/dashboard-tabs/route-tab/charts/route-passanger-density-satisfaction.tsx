@@ -5,6 +5,15 @@ import Loading from "@/pages/dashboard/loading";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useSelector } from "react-redux";
 
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Lazım olanları qeydiyyat et
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const RoutePassangerDensitySatisfaction = () => {
     const [chartData, setChartData] = useState<any>();
@@ -62,8 +71,7 @@ const RoutePassangerDensitySatisfaction = () => {
                       res.data.result.satisfiedCount,
                       res.data.result.dissatisfiedCount,
                     ],
-                    backgroundColor: [ "#84DCC6", 
-                      "#E4572E"],
+                    backgroundColor: ["#E4572E", "#84DCC6"],
                     hoverOffset: 4,
                   },
                 ],

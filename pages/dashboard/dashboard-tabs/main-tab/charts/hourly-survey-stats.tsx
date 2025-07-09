@@ -5,6 +5,17 @@ import { Hours } from "@/const/definitions";
 import { Bar } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
 const HourlySurveyStats = () => {
   const [chartData, setChartData] = useState<any>();
   const [error, setError] = useState<boolean>(false);

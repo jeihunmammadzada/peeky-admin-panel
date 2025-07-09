@@ -5,6 +5,17 @@ import { GetQuestionComplaintCount } from "@/utils/actions";
 import { Bar } from "react-chartjs-2";
 import Loading from "@/pages/dashboard/loading";
 
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
 const MostProblemsChart = () => {
   const [chartData, setChartData] = useState<any>();
   const [error, setError] = useState<boolean>(false);
